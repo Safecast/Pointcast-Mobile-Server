@@ -6,7 +6,7 @@
 return array(
 	'default' => array(
 		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=pointcast',
+			'dsn'        => 'mysql:host=localhost;dbname=pointcast;unix_socket=/tmp/mysql.sock',
 			'username'   => 'pointcast',
 			'password'   => 'pointcast',
 		),
@@ -22,7 +22,9 @@ return array(
                 'password'       => 'pointcast',
                 'persistent'     => false,
                 'compress'       => false,
-                'socket' => '/var/run/mysqld/mysqld.sock',
+                // 'socket' => '/var/run/mysqld/mysqld.sock',
+                'socket' => '/tmp/mysql.sock',
+                                
         ),
         'identifier'     => '`',
         'table_prefix'   => '',

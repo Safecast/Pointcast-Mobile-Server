@@ -1,7 +1,7 @@
 
-// 2015-10-30 main measurement table
+# 2015-10-30 main measurement table
 CREATE TABLE `l_measurements_history` (
-  `l_measurements_history_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `l_measurements_history_id` bigint(20) AUTO_INCREMENT,
   `captured_at` datetime,
   `channel_id` integer,
   `device_id` integer,

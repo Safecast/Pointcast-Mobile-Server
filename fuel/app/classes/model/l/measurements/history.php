@@ -6,7 +6,8 @@ class Model_L_Measurements_History extends \Orm\Model
 		'l_measurements_history_id' => array(
 			'data_type' => 'bigint',
 			'label' => 'L measurements history id',
-			'null' => false,
+			'null' => true,
+			/*
 			'validation' => array(
 				0 => 'required',
 				'numeric_min' => array(
@@ -16,6 +17,7 @@ class Model_L_Measurements_History extends \Orm\Model
 					0 => 9223372036854775807,
 				),
 			),
+			*/
 			'form' => array(
 				'type' => 'number',
 				'min' => -9223372036854775808,
@@ -300,13 +302,43 @@ class Model_L_Measurements_History extends \Orm\Model
         ),
         'Orm\Observer_Typing' => array(
             'events' => array('before_save', 'after_save', 'after_load'),
-        ),        'Orm\Observer_CreatedAt' => array(
+        ),
+        'Orm\Observer_CreatedAt' => array(
             'events' => array('before_insert'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'created_at',
-        ),        'Orm\Observer_UpdatedAt' => array(
+        ),
+        'Orm\Observer_UpdatedAt' => array(
             'events' => array('before_save'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'updated_at',
-        ),    );
+        ),
+    );
+
+    public static function registerRecord($data) {
+
+        $l_measurements_history = self::query()->where('id', $data->id)
+                    ->where('device_id', $data->device_id)
+                    ->get_one();
+
+        if (empty($l_measurements_history)) {
+        	$data = self::convertRecord($data);
+        	$l_measurements_history = self::forge();
+            $l_measurements_history->set($data);
+            $l_measurements_history->save();
+        } else {
+            return false;
+        }
+    }
+
+    private static function convertRecord($data) {
+        // object to array
+        $data_array = get_object_vars($data);
+        // format captured_at
+        $time = strtotime($data_array['captured_at']);
+        $data_array['captured_at'] = date("Y-m-d H:i:s", $time);
+        $data_array['updated_at'] = date("Y-m-d H:i:s", time());
+        $data_array['created_at'] = date("Y-m-d H:i:s", time());
+       return $data_array;
+    }
 }
