@@ -12,7 +12,7 @@ return array(
 		),
 	),
 
-    'create_orm_mode' => array(
+    'create_orm_model' => array(
         'type'           => 'mysqli',
         'connection'     => array(
                 'hostname'       => 'localhost',

@@ -21,7 +21,7 @@
  */
 class Controller_Pointcast extends Controller_Rest
 {
-
+	
 	/**
 	 * The basic welcome message
 	 *
@@ -42,12 +42,24 @@ class Controller_Pointcast extends Controller_Rest
 	 */
 	public function action_home()
 	{
-		$this->response(array(
-            'foo' => Input::get('foo'),
-            'baz' => array(
-                1, 50, 219
-            ),
-            'empty' => null
+		// get sensors list
+		$m_sensor_mains = DB::select()->from('m_sensor_main')->execute()->as_array();
+		
+		// convert to device id list
+		$device_ids = \Model_M_Sensor_Main::getDeviceIdList($m_sensor_mains);
+		
+		// get average data
+		$averages = \Model\Sensors::getAverageSummary($device_ids);
+
+        // get peaks data
+        $peaks = \Model\Sensors::getPeakSummary($device_ids);
+        
+        // attach summary value
+        \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
+
+        $this->response(array(
+            'topic' => array(),
+            'sensors' => $m_sensor_mains,
         ));
 	}
 
@@ -61,4 +73,5 @@ class Controller_Pointcast extends Controller_Rest
 	{
 		return Response::forge(ViewModel::forge('welcome/404'), 404);
 	}
+
 }

@@ -1,6 +1,8 @@
 <?php
 class Model_L_Measurements_History extends \Orm\Model
 {
+	static $_primary_key = array('l_measurements_history_id');
+
     protected static $_table_name = 'l_measurements_history';
     protected static $_properties = array(
 		'l_measurements_history_id' => array(
