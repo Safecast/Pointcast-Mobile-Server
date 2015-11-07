@@ -1,1 +1,4 @@
+.DS_Store
 fuel/app/logs
+fuel/app/caches
+

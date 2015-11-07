@@ -256,12 +256,19 @@ class Model_M_Sensor_Main extends \Orm\Model
     	// get all device_id
     	$device_id = array();
     	foreach($m_sensor_mains as $key => $m_sensor_main) {
+    		/*
     		for ($i = 1; $i <= 9; $i++) {
     			$column_name = "sensor${i}_device_id";
     			if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
     				$device_id[] = $m_sensor_main[$column_name];
     			}
     		}
+    		*/
+    		// fixed sensor 1
+    		$column_name = "sensor1_device_id";
+			if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
+				$device_id[] = $m_sensor_main[$column_name];
+			}
     	}
     	return $device_id;
     }
