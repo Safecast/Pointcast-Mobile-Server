@@ -49,7 +49,6 @@ class Updater
         $url .= "page={$page}";
         curl_setopt($conn, CURLOPT_URL, $url);
         $response = curl_exec($conn);
-var_dump($url);
         curl_close($conn);
 
         // decode json
