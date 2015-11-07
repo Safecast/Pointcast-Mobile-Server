@@ -26,7 +26,10 @@ class Updater
             $mesurements_data = $this->getMesurementsData($device_id, $captured_before, $captured_after, $page);
             // register record
             foreach ($mesurements_data as $key => $record) {
-                \Model_L_Measurements_History::registerRecord($record);
+                if ( \Model_L_Measurements_History::registerRecord($record) == false) {
+                    // 一件でも重複するなら更新停止
+                    return;
+                }
             }
             $page++;
         } while(!empty($mesurements_data));
@@ -46,7 +49,7 @@ class Updater
         $url .= "page={$page}";
         curl_setopt($conn, CURLOPT_URL, $url);
         $response = curl_exec($conn);
-         
+var_dump($url);
         curl_close($conn);
 
         // decode json

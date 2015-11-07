@@ -328,6 +328,7 @@ class Model_L_Measurements_History extends \Orm\Model
         	$l_measurements_history = self::forge();
             $l_measurements_history->set($data);
             $l_measurements_history->save();
+            return true;
         } else {
             return false;
         }
