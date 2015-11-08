@@ -3,6 +3,19 @@ namespace Model;
 
 class Sensors extends \Model {
 
+        public static function getRecentRecord($device_ids) {
+            
+            $result = array();
+            foreach ($device_ids as $device_id) {
+                $l_measurements_history = \Model_L_Measurements_History::query()
+                                ->where("device_id", $device_id)
+                                ->order_by(array("captured_at" => "DESC"))
+                                ->get_one();
+                $result[$device_id] = $l_measurements_history;
+            }
+            return $result;
+        }
+
         public static function getAverageSummary($device_ids) {
             $base_timestamp = strtotime("-1 day");
             $yeasterday_data = self::getAverageData(date("Y-m-d 23:59:59", $base_timestamp),
@@ -59,6 +72,21 @@ EOF;
             $result = \DB::query($sql)->execute()->as_array();
             $peaks = \Model\Dbutil::convertArrayToKeyValue($result, "device_id", "avg");
             return $peaks;
+        }
+
+        public static function attachRecents(&$m_sensor_mains, $recents) {
+            // attach mesurement
+            foreach ($m_sensor_mains as $key => $m_sensor_main) {
+                $column_name = "sensor1_device_id";
+                if ($m_sensor_main[$column_name] > 0) {
+                    if (isset($recents[$m_sensor_main[$column_name]])) {
+                        \Log::error(print_r($recents[$m_sensor_main[$column_name]], true));
+                        $value = $recents[$m_sensor_main[$column_name]]->value;
+                        $captured_at = $recents[$m_sensor_main[$column_name]]->captured_at;
+                        $m_sensor_mains[$key]['recent'] = array('value' => $value, 'captured_at' => $captured_at);
+                    }
+                }
+            }
         }
 
         public static function attachMeasurements(&$m_sensor_mains, $averages, $peaks) {

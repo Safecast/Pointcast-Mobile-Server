@@ -49,13 +49,19 @@ class Controller_Pointcast extends Controller_Rest
 		$device_ids = \Model_M_Sensor_Main::getDeviceIdList($m_sensor_mains);
 		
 		// get average data
-		$averages = \Model\Sensors::getAverageSummary($device_ids);
+		$recents = \Model\Sensors::getRecentRecord($device_ids);
+
+		// get average data
+		// $averages = \Model\Sensors::getAverageSummary($device_ids);
 
         // get peaks data
-        $peaks = \Model\Sensors::getPeakSummary($device_ids);
+        // $peaks = \Model\Sensors::getPeakSummary($device_ids);
         
         // attach summary value
-        \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
+        // \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
+
+        // attach recents data
+        \Model\Sensors::attachRecents($m_sensor_mains, $recents);
 
         $this->response(array(
             'topic' => array(),
