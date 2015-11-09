@@ -46,7 +46,8 @@ class Updater
         $url  = $end_point . "/${device_id}/measurements.json?";
         $url .= "captured_at+desc&captured_before=${captured_before}+00%3A00&";
         $url .= "captured_after=${captured_after}+00%3A00&";
-        $url .= "page={$page}";
+        $url .= "page={$page}&";
+        $url .= "order=captured_at+desc";
         curl_setopt($conn, CURLOPT_URL, $url);
         $response = curl_exec($conn);
         curl_close($conn);
