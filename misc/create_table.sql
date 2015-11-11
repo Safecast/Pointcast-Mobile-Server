@@ -40,5 +40,31 @@ CREATE TABLE `l_measurements_history` (
   PRIMARY KEY (`l_measurements_history_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+# 2015-11-11 main measurement table
+CREATE TABLE `l_measurements_history_daily` (
+  `l_measurements_history_daily_id` bigint(20) AUTO_INCREMENT,
+  `captured_date` datetime,
+  `device_id` integer,
+  `average_value` integer,
+  `peak_value` integer,
+  `updated_at` datetime,
+  `created_at` datetime,
+  PRIMARY KEY (`l_measurements_history_daily_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# 2015-11-11 main measurement table
+CREATE TABLE `l_measurements_history_monthly` (
+  `l_measurements_history_monthly_id` bigint(20) AUTO_INCREMENT,
+  `captured_date` datetime,
+  `device_id` integer,
+  `average_value` integer,
+  `peak_value` integer,
+  `updated_at` datetime,
+  `created_at` datetime,
+  PRIMARY KEY (`l_measurements_history_monthly_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 
 
