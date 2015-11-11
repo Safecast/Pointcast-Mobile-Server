@@ -1,12 +1,15 @@
 <?php
 class Model_L_Measurements_History_Daily extends \Orm\Model
 {
+	static $_primary_key = array('l_measurements_history_daily_id');
+
     protected static $_table_name = 'l_measurements_history_daily';
     protected static $_properties = array(
 		'l_measurements_history_daily_id' => array(
 			'data_type' => 'bigint',
 			'label' => 'L measurements history daily id',
-			'null' => false,
+			'null' => true,
+			/*
 			'validation' => array(
 				0 => 'required',
 				'numeric_min' => array(
@@ -21,6 +24,7 @@ class Model_L_Measurements_History_Daily extends \Orm\Model
 				'min' => -9223372036854775808,
 				'max' => 9223372036854775807,
 			),
+			*/
 		),
 		'captured_date' => array(
 			'data_type' => 'string',
@@ -51,39 +55,41 @@ class Model_L_Measurements_History_Daily extends \Orm\Model
 			),
 		),
 		'average_value' => array(
-			'data_type' => 'int',
+			'data_type' => 'float',
 			'label' => 'Average value',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -99999.999989999997,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 99999.999989999997,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
 			),
 		),
 		'peak_value' => array(
-			'data_type' => 'int',
+			'data_type' => 'float',
 			'label' => 'Peak value',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -99999.999989999997,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 99999.999989999997,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
 			),
 		),
 		'updated_at' => array(
@@ -115,11 +121,11 @@ class Model_L_Measurements_History_Daily extends \Orm\Model
             'events' => array('before_save', 'after_save', 'after_load'),
         ),        'Orm\Observer_CreatedAt' => array(
             'events' => array('before_insert'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'created_at',
         ),        'Orm\Observer_UpdatedAt' => array(
             'events' => array('before_save'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'updated_at',
         ),    );
 }

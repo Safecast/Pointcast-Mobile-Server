@@ -45,8 +45,8 @@ CREATE TABLE `l_measurements_history_daily` (
   `l_measurements_history_daily_id` bigint(20) AUTO_INCREMENT,
   `captured_date` datetime,
   `device_id` integer,
-  `average_value` integer,
-  `peak_value` integer,
+  `average_value` FLOAT(10,5),
+  `peak_value` FLOAT(10,5),
   `updated_at` datetime,
   `created_at` datetime,
   PRIMARY KEY (`l_measurements_history_daily_id`)
@@ -57,8 +57,8 @@ CREATE TABLE `l_measurements_history_monthly` (
   `l_measurements_history_monthly_id` bigint(20) AUTO_INCREMENT,
   `captured_date` datetime,
   `device_id` integer,
-  `average_value` integer,
-  `peak_value` integer,
+  `average_value` FLOAT(10,5),
+  `peak_value` FLOAT(10,5),
   `updated_at` datetime,
   `created_at` datetime,
   PRIMARY KEY (`l_measurements_history_monthly_id`)

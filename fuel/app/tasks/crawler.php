@@ -44,7 +44,7 @@ class Crawler
         $url .= "captured_at+desc&captured_before=${captured_before}+00%3A00&";
         $url .= "captured_after=${captured_after}+00%3A00&";
         $url .= "page={$page}";
-var_dump($url);
+
         curl_setopt($conn, CURLOPT_URL, $url);
         $response = curl_exec($conn);
          

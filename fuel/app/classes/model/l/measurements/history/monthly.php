@@ -51,39 +51,41 @@ class Model_L_Measurements_History_Monthly extends \Orm\Model
 			),
 		),
 		'average_value' => array(
-			'data_type' => 'int',
+			'data_type' => 'float',
 			'label' => 'Average value',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -99999.999989999997,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 99999.999989999997,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
 			),
 		),
 		'peak_value' => array(
-			'data_type' => 'int',
+			'data_type' => 'float',
 			'label' => 'Peak value',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -99999.999989999997,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 99999.999989999997,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
 			),
 		),
 		'updated_at' => array(
