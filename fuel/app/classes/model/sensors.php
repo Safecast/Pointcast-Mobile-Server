@@ -16,6 +16,19 @@ class Sensors extends \Model {
             return $result;
         }
 
+        public static function getAggregation($device_ids) {
+            
+            $result = array();
+            foreach ($device_ids as $device_id) {
+                $l_measurements_history_daily = \Model_L_Measurements_History_Daily::query()
+                                ->where("device_id", $device_id)
+                                ->where("captured_date", date("Y-m-d 00:00:00", strtotime("-1 day")))
+                                ->get_one();
+                $result[$device_id] = $l_measurements_history_daily;
+            }
+            return $result;
+        }
+
         public static function getAverageSummary($device_ids) {
             $base_timestamp = strtotime("-1 day");
             $yeasterday_data = self::getAverageData(date("Y-m-d 23:59:59", $base_timestamp),
@@ -74,16 +87,22 @@ EOF;
             return $peaks;
         }
 
-        public static function attachRecents(&$m_sensor_mains, $recents) {
+        public static function attachAggregations(&$m_sensor_mains, $recents, $aggregations) {
             // attach mesurement
             foreach ($m_sensor_mains as $key => $m_sensor_main) {
                 $column_name = "sensor1_device_id";
                 if ($m_sensor_main[$column_name] > 0) {
                     if (isset($recents[$m_sensor_main[$column_name]])) {
-                        \Log::error(print_r($recents[$m_sensor_main[$column_name]], true));
+                        \Log::info(print_r($recents[$m_sensor_main[$column_name]], true));
                         $value = $recents[$m_sensor_main[$column_name]]->value;
                         $captured_at = $recents[$m_sensor_main[$column_name]]->captured_at;
                         $m_sensor_mains[$key]['recent'] = array('value' => $value, 'captured_at' => $captured_at);
+                    }
+                    if (isset($aggregations[$m_sensor_main[$column_name]])) {
+                        \Log::info(print_r($aggregations[$m_sensor_main[$column_name]], true));
+                        $peak_value = $aggregations[$m_sensor_main[$column_name]]->peak_value;
+                        $average_value = $aggregations[$m_sensor_main[$column_name]]->average_value;
+                        $m_sensor_mains[$key]['aggregation']['yesterday'] = array('peak_value' => $peak_value, 'avg_value' => $average_value);
                     }
                 }
             }

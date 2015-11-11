@@ -48,11 +48,11 @@ class Controller_Pointcast extends Controller_Rest
 		// convert to device id list
 		$device_ids = \Model_M_Sensor_Main::getDeviceIdList($m_sensor_mains);
 		
-		// get average data
+		// get recent data
 		$recents = \Model\Sensors::getRecentRecord($device_ids);
 
-		// get average data
-		// $averages = \Model\Sensors::getAverageSummary($device_ids);
+		// get aggregation data
+		$aggregations = \Model\Sensors::getAggregation($device_ids);
 
         // get peaks data
         // $peaks = \Model\Sensors::getPeakSummary($device_ids);
@@ -60,8 +60,8 @@ class Controller_Pointcast extends Controller_Rest
         // attach summary value
         // \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
 
-        // attach recents data
-        \Model\Sensors::attachRecents($m_sensor_mains, $recents);
+        // attach recents aggregations data
+        \Model\Sensors::attachAggregations($m_sensor_mains, $recents, $aggregations);
 
         $this->response(array(
             'topic' => array(),
