@@ -67,7 +67,25 @@ class Controller_Pointcast extends Controller_Rest
             'topic' => array(),
             'sensors' => $m_sensor_mains,
         ));
-	}
+    }
+
+    public function action_analytics($m_sensor_main_id = 1) {
+
+        // グラフ表示用の分析結果を表示する
+        $chart = array();
+        
+        // realtime
+        $chart_realtime = \Model\Chart::getRealtimeChart($m_sensor_main_id);
+
+        $this->response(
+            array('chart' => 
+                array(
+                    'realtime' => $chart_realtime,
+                    'weekly' => array(),
+                    'monthly' => array(),
+                ),
+        ));
+    }
 
 	/**
 	 * The 404 action for the application.
