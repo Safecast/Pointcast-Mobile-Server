@@ -9,14 +9,15 @@ class Aggregation
         ini_set('memory_limit', '1024M');
         $targets = array("daily" => 1, "monthly" => 2);
 
-        if ($captured_before != date("Y-m-d", strtotime($captured_before)) ||
-                $captured_after != date("Y-m-d", strtotime($captured_after)) )  {
-            
-            // echo "Please Type EX)  php oil r aggregation 2015-11-01 2015-01-01\n";
-            // return;
+        if (empty($captured_before) || empty($captured_after)) {
             // @note デフォルト値で動かす
-            $captured_before != date("Y-m-d", strtotime("+1 day"));
-            $captured_after != date("Y-m-d", strtotime("-5 day"));
+            $captured_before = date("Y-m-d", strtotime("+1 day"));
+            $captured_after = date("Y-m-d", strtotime("-5 day"));
+        } elseif ($captured_before != date("Y-m-d", strtotime($captured_before)) ||
+            $captured_after != date("Y-m-d", strtotime($captured_after)) )  {
+            
+            echo "Please Type EX)  php oil r aggregation 2015-11-01 2015-01-01\n";
+            return;
         }
 
         // 指定期間の計測データを集計する
