@@ -44,6 +44,8 @@ class Controller_Pointcast extends Controller_Rest
 	{
 		// get sensors list
 		$m_sensor_mains = DB::select()->from('m_sensor_main')->execute()->as_array();
+        // convert int value
+        \Model\Dbutil::recordCastInt($m_sensor_mains);
 		
 		// convert to device id list
 		$device_ids = \Model_M_Sensor_Main::getDeviceIdList($m_sensor_mains);
