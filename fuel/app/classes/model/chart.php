@@ -35,15 +35,22 @@ class Chart extends \Model {
     public static function getRealtimeChartByDeviceId($device_id) {
         $captured_at = date("Y-m-d H:i:s", strtotime("-2 day"));
         $sql = <<< EOF
-SELECT DATE_FORMAT(captured_at, '%m%d:%H%i') as captured_date, value
+SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
 WHERE device_id = $device_id AND captured_at > '$captured_at'
 ORDER BY captured_date DESC
-LIMIT 100;
+LIMIT 500;
 EOF;
         $l_measurements_histories = \DB::query($sql)
                                         ->execute()
                                         ->as_array();
+        // value change
+        foreach ($l_measurements_histories as $key => $l_measurements_history) {
+            $capture_timestamp = strtotime($l_measurements_history['captured_date']);
+            $l_measurements_histories[$key]['major_label'] = date("d", $capture_timestamp);
+            $l_measurements_histories[$key]['middle_label'] = date("H", $capture_timestamp);
+            $l_measurements_histories[$key]['minor_label'] = date("i", $capture_timestamp);
+        }
 
         return $l_measurements_histories;
 
