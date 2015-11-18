@@ -3,6 +3,8 @@ namespace Model;
 
 class Chart extends \Model {
 
+    const REALTIME_CHART_LIMIT = 2016; // 5min 7days  
+
     public static function getRealtimeChart($m_sensor_main_id) {
 
         $result = array();
@@ -33,13 +35,14 @@ class Chart extends \Model {
     }
 
     public static function getRealtimeChartByDeviceId($device_id) {
-        $captured_at = date("Y-m-d H:i:s", strtotime("-2 day"));
+        $captured_at = date("Y-m-d H:i:s", strtotime("-10 day"));
+        $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
 WHERE device_id = $device_id AND captured_at > '$captured_at'
 ORDER BY captured_date DESC
-LIMIT 500;
+LIMIT $limit;
 EOF;
         $l_measurements_histories = \DB::query($sql)
                                         ->execute()
