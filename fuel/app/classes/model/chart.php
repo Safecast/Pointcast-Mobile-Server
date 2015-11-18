@@ -51,6 +51,7 @@ EOF;
             $l_measurements_histories[$key]['middle_label'] = (int)date("H", $capture_timestamp);
             $l_measurements_histories[$key]['minor_label'] = (int)date("i", $capture_timestamp);
             $l_measurements_histories[$key]['value'] = (int)$l_measurements_history['value'];
+            $l_measurements_histories[$key]['timestamp'] = $capture_timestamp;
         }
 
         return $l_measurements_histories;
