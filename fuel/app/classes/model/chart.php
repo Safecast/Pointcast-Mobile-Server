@@ -44,12 +44,13 @@ EOF;
         $l_measurements_histories = \DB::query($sql)
                                         ->execute()
                                         ->as_array();
-        // value change
+        // value change and cast
         foreach ($l_measurements_histories as $key => $l_measurements_history) {
             $capture_timestamp = strtotime($l_measurements_history['captured_date']);
-            $l_measurements_histories[$key]['major_label'] = date("d", $capture_timestamp);
-            $l_measurements_histories[$key]['middle_label'] = date("H", $capture_timestamp);
-            $l_measurements_histories[$key]['minor_label'] = date("i", $capture_timestamp);
+            $l_measurements_histories[$key]['major_label'] = (int)date("d", $capture_timestamp);
+            $l_measurements_histories[$key]['middle_label'] = (int)date("H", $capture_timestamp);
+            $l_measurements_histories[$key]['minor_label'] = (int)date("i", $capture_timestamp);
+            $l_measurements_histories[$key]['value'] = (int)$l_measurements_history['value'];
         }
 
         return $l_measurements_histories;
