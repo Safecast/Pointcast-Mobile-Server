@@ -214,6 +214,42 @@ class Model_M_Sensor_Main extends \Orm\Model
 				'max' => 2147483647,
 			),
 		),
+		'view_order' => array(
+			'data_type' => 'int',
+			'label' => 'view order',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -2147483648,
+				),
+				'numeric_max' => array(
+					0 => 2147483647,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'min' => -2147483648,
+				'max' => 2147483647,
+			),
+		),
+		'enable' => array(
+			'data_type' => 'int',
+			'label' => 'enable',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -2147483648,
+				),
+				'numeric_max' => array(
+					0 => 2147483647,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'min' => -2147483648,
+				'max' => 2147483647,
+			),
+		),
 		'updated_at' => array(
 			'data_type' => 'string',
 			'label' => 'Updated at',

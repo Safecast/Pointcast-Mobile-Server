@@ -43,7 +43,12 @@ class Controller_Pointcast extends Controller_Rest
 	public function action_home()
 	{
 		// get sensors list
-		$m_sensor_mains = DB::select()->from('m_sensor_main')->execute()->as_array();
+		$m_sensor_mains = DB::select()
+                ->from('m_sensor_main')
+                ->where('enable', 1)
+                ->order_by('view_order', 'ASC')
+                ->execute()->as_array();
+        
         // convert int value
         \Model\Dbutil::recordCastInt($m_sensor_mains);
 		
