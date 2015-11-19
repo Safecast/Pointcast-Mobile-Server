@@ -21,14 +21,15 @@ class Chart extends \Model {
         $m_sensor_main = reset($m_sensor_main);
 
         // attach mesurement
-        for($i = 1; $i <= 9; $i++) {
+        // for($i = 1; $i <= 9; $i++) {
+            $i = 1;
             $column_name = "sensor${i}_device_id";
             if ($m_sensor_main[$column_name] > 0) {
                 // check mesurement and append
                 $device_id = $m_sensor_main[$column_name];
                 $result[$device_id] = self::getRealtimeChartByDeviceId($device_id);
             }
-        }
+        // }
 
         return $result;
 
