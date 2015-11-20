@@ -35,12 +35,12 @@ class Chart extends \Model {
     }
 
     public static function getRealtimeChartByDeviceId($device_id) {
-        // $captured_at = date("Y-m-d H:i:s", strtotime("-10 day"));
+        $captured_at = date("Y-m-d H:i:s", strtotime("-5 day"));
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
-WHERE device_id = $device_id
+WHERE device_id = $device_id AND captured_at > '$captured_at'
 ORDER BY captured_date DESC
 LIMIT $limit;
 EOF;
