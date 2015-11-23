@@ -52,6 +52,44 @@ class Model_M_Sensor_Main extends \Orm\Model
 				'maxlength' => 255,
 			),
 		),
+		'latitude' => array(
+			'data_type' => 'float',
+			'label' => 'latitude',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -99999.999989999997,
+				),
+				'numeric_max' => array(
+					0 => 99999.999989999997,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
+			),
+		),
+		'longitude' => array(
+			'data_type' => 'float',
+			'label' => 'longtitude',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -99999.999989999997,
+				),
+				'numeric_max' => array(
+					0 => 99999.999989999997,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'step' => 0.99999000000000005,
+				'min' => -99999.999989999997,
+				'max' => 99999.999989999997,
+			),
+		),
 		'sensor1_device_id' => array(
 			'data_type' => 'int',
 			'label' => 'Sensor1 device id',
