@@ -47,12 +47,12 @@ var_dump($url);
         $l_weather_history = \Model_L_Weather_History::query()
             ->where("original_id", $current_weather->id)
             ->where("sensor1_device_id", $device_id)
+            ->where("dt", $current_weather->dt)
             ->get_one();
         
         if (empty($l_weather_history)) {
             $l_weather_history = \Model_L_Weather_History::forge();
         }
-
         $l_weather_history->sensor1_device_id = $device_id;
         $l_weather_history->coord_lon = $current_weather->coord->lon;
         $l_weather_history->coord_lat = $current_weather->coord->lat;
@@ -72,7 +72,12 @@ var_dump($url);
             $l_weather_history->visibility = 0;
         }
         $l_weather_history->wind_speed = $current_weather->wind->speed;
-        $l_weather_history->wind_deg = $current_weather->wind->deg;
+        if (isset($current_weather->wind->deg)){
+            $l_weather_history->wind_deg = $current_weather->wind->deg;
+        } else {
+            $l_weather_history->wind_deg = 0;
+        }
+        
         $l_weather_history->clouds_all = $current_weather->clouds->all;
         $l_weather_history->dt = $current_weather->dt;
         if (isset($current_weather->sys->type)) {
