@@ -80,7 +80,7 @@ EOF;
         foreach ($l_weather_histories as $key => $l_weather_history) {
             $l_measurements_histories[$key]['weather_main'] = $l_weather_history['weather_main'];
             $l_measurements_histories[$key]['icon'] = $l_weather_history['icon'];
-            $l_measurements_histories[$key]['timestamp'] = $l_weather_history['dt'];
+            $l_measurements_histories[$key]['timestamp'] = (int)$l_weather_history['dt'];
         }
 
         return $l_measurements_histories;
