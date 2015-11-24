@@ -27,7 +27,8 @@ class Chart extends \Model {
             if ($m_sensor_main[$column_name] > 0) {
                 // check mesurement and append
                 $device_id = $m_sensor_main[$column_name];
-                $result[$device_id] = self::getRealtimeChartByDeviceId($device_id);
+                $result['sensors'][$device_id] = self::getRealtimeChartByDeviceId($device_id);
+                $result['weather'][$device_id] = self::getRealtimeWeatherByDeviceId($device_id);
             }
         // }
 
@@ -56,6 +57,30 @@ EOF;
             $l_measurements_histories[$key]['minor_label'] = (int)date("i", $capture_timestamp);
             $l_measurements_histories[$key]['value'] = (int)$l_measurements_history['value'];
             $l_measurements_histories[$key]['timestamp'] = $capture_timestamp;
+        }
+
+        return $l_measurements_histories;
+
+    }
+
+    public static function getRealtimeWeatherByDeviceId($device_id) {
+        $dt = strtotime("-5 day");
+        $limit = self::REALTIME_CHART_LIMIT;
+        $sql = <<< EOF
+SELECT dt, weather_main, icon
+FROM l_weather_history
+WHERE sensor1_device_id = $device_id AND dt > $dt
+ORDER BY dt DESC
+LIMIT $limit;
+EOF;
+        $l_weather_histories = \DB::query($sql)
+                                        ->execute()
+                                        ->as_array();
+        // value change and cast
+        foreach ($l_weather_histories as $key => $l_weather_history) {
+            $l_measurements_histories[$key]['weather_main'] = $l_weather_history['weather_main'];
+            $l_measurements_histories[$key]['icon'] = $l_weather_history['icon'];
+            $l_measurements_histories[$key]['timestamp'] = $l_weather_history['dt'];
         }
 
         return $l_measurements_histories;
