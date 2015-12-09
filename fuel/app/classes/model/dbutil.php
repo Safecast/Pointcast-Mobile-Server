@@ -20,7 +20,14 @@ class Dbutil extends \Model {
         if (is_array($records)) {
             foreach ($records as $key => $record) {
                 foreach ($record as $column => $value) {
-                    if (is_numeric($value)) {
+                    if (is_float($value)) {
+                        // to float
+                        $records[$key][$column] = (float)$value;
+                    }else if (is_numeric($value) && !is_int($value)) {
+                        // to float
+                        $records[$key][$column] = (float)$value;
+                    } else if (is_int($value)) {
+                        // to integer
                         $records[$key][$column] = (int)$value;
                     }
                 }
