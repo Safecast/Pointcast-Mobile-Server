@@ -1,8 +1,7 @@
 <?php
 class Model_M_Sensor_Main extends \Orm\Model
 {
-	static $_primary_key = array('m_sensor_main_id');
-
+    static $_primary_key = array('m_sensor_main_id');
     protected static $_table_name = 'm_sensor_main';
     protected static $_properties = array(
 		'm_sensor_main_id' => array(
@@ -52,42 +51,61 @@ class Model_M_Sensor_Main extends \Orm\Model
 				'maxlength' => 255,
 			),
 		),
-		'latitude' => array(
-			'data_type' => 'float',
-			'label' => 'latitude',
-			'null' => true,
+		'm_sensor_information_id' => array(
+			'data_type' => 'int',
+			'label' => 'M sensor information id',
+			'null' => false,
 			'validation' => array(
+				0 => 'required',
 				'numeric_min' => array(
-					0 => -99999.999989999997,
+					0 => 0,
 				),
 				'numeric_max' => array(
-					0 => 99999.999989999997,
+					0 => 4294967295,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'step' => 0.99999000000000005,
-				'min' => -99999.999989999997,
-				'max' => 99999.999989999997,
+				'min' => 0,
+				'max' => 4294967295,
+			),
+		),
+		'latitude' => array(
+			'data_type' => 'float',
+			'label' => 'Latitude',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -9999999.999,
+				),
+				'numeric_max' => array(
+					0 => 9999999.999,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'step' => 0.999,
+				'min' => -9999999.999,
+				'max' => 9999999.999,
 			),
 		),
 		'longitude' => array(
 			'data_type' => 'float',
-			'label' => 'longtitude',
+			'label' => 'Longitude',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -99999.999989999997,
+					0 => -9999999.999,
 				),
 				'numeric_max' => array(
-					0 => 99999.999989999997,
+					0 => 9999999.999,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'step' => 0.99999000000000005,
-				'min' => -99999.999989999997,
-				'max' => 99999.999989999997,
+				'step' => 0.999,
+				'min' => -9999999.999,
+				'max' => 9999999.999,
 			),
 		),
 		'sensor1_device_id' => array(
@@ -254,7 +272,7 @@ class Model_M_Sensor_Main extends \Orm\Model
 		),
 		'view_order' => array(
 			'data_type' => 'int',
-			'label' => 'view order',
+			'label' => 'View order',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
@@ -272,7 +290,7 @@ class Model_M_Sensor_Main extends \Orm\Model
 		),
 		'enable' => array(
 			'data_type' => 'int',
-			'label' => 'enable',
+			'label' => 'Enable',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
@@ -327,23 +345,23 @@ class Model_M_Sensor_Main extends \Orm\Model
 
     public static function getDeviceIdList($m_sensor_mains) {
 
-    	// get all device_id
-    	$device_id = array();
-    	foreach($m_sensor_mains as $key => $m_sensor_main) {
-    		/*
-    		for ($i = 1; $i <= 9; $i++) {
-    			$column_name = "sensor${i}_device_id";
-    			if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
-    				$device_id[] = $m_sensor_main[$column_name];
-    			}
-    		}
-    		*/
-    		// fixed sensor 1
-    		$column_name = "sensor1_device_id";
-			if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
-				$device_id[] = $m_sensor_main[$column_name];
-			}
-    	}
-    	return $device_id;
+       // get all device_id
+       $device_id = array();
+       foreach($m_sensor_mains as $key => $m_sensor_main) {
+               /*
+               for ($i = 1; $i <= 9; $i++) {
+                       $column_name = "sensor${i}_device_id";
+                       if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
+                               $device_id[] = $m_sensor_main[$column_name];
+                       }
+               }
+               */
+               // fixed sensor 1
+               $column_name = "sensor1_device_id";
+                       if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
+                               $device_id[] = $m_sensor_main[$column_name];
+                       }
+       }
+       return $device_id;
     }
 }

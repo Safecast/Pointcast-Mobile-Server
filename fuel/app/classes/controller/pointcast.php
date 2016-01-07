@@ -43,10 +43,12 @@ class Controller_Pointcast extends Controller_Rest
 	public function action_home()
 	{
 		// get sensors list
-		$m_sensor_mains = DB::select()
+		$m_sensor_mains = DB::select("m_sensor_main.*", "m_sensor_information.name", "m_sensor_information.conversion_rate")
                 ->from('m_sensor_main')
-                ->where('enable', 1)
-                ->order_by('view_order', 'ASC')
+                ->join('m_sensor_information', 'left')
+                ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
+                ->where('m_sensor_main.enable', 1)
+                ->order_by('m_sensor_main.view_order', 'ASC')
                 ->execute()->as_array();
         
         // convert int value
