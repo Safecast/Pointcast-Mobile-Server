@@ -1,6 +1,7 @@
 <?php
 class Model_M_Sensor_Information extends \Orm\Model
 {
+	static $_primary_key = array('m_sensor_information_id');
     protected static $_table_name = 'm_sensor_information';
     protected static $_properties = array(
 		'm_sensor_information_id' => array(
