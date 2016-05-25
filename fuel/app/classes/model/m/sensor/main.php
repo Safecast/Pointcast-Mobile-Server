@@ -335,11 +335,11 @@ class Model_M_Sensor_Main extends \Orm\Model
             'events' => array('before_save', 'after_save', 'after_load'),
         ),        'Orm\Observer_CreatedAt' => array(
             'events' => array('before_insert'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'created_at',
         ),        'Orm\Observer_UpdatedAt' => array(
             'events' => array('before_save'),
-            'mysql_timestamp' => false,
+            'mysql_timestamp' => true,
             'property' => 'updated_at',
         ),    );
 
