@@ -35,4 +35,16 @@ class Dbutil extends \Model {
         }
     }
 
+    public static function getDeviceIdList($m_sensor_mains) {
+       // get all device_id
+       $device_id = array();
+       foreach($m_sensor_mains as $key => $m_sensor_main) {
+           // fixed sensor 1
+           $column_name = "sensor1_device_id";
+           if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
+                   $device_id[] = $m_sensor_main[$column_name];
+           }
+       }
+       return $device_id;
+    }
 }

@@ -47,15 +47,13 @@ class Controller_Pointcast extends Controller_Rest
                 ->from('m_sensor_main')
                 ->join('m_sensor_information', 'left')
                 ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
-                ->where('m_sensor_main.enable', 1)
                 ->order_by('m_sensor_main.view_order', 'ASC')
                 ->execute()->as_array();
-        
         // convert int value
         \Model\Dbutil::recordCastInt($m_sensor_mains);
 		
 		// convert to device id list
-		$device_ids = \Model_M_Sensor_Main::getDeviceIdList($m_sensor_mains);
+		$device_ids = \Model\Dbutil::getDeviceIdList($m_sensor_mains);
 		
 		// get recent data
 		$recents = \Model\Sensors::getRecentRecord($device_ids);
