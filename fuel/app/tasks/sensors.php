@@ -4,6 +4,11 @@ namespace Fuel\Tasks;
 
 class Sensors
 {
+
+    const STATUS_ONLINE = 1;
+    const STATUS_OFFLINE = 2;
+    const STATUS_OFFLINE_LONG = 3;
+    
     
     public function run()
     {
@@ -28,49 +33,46 @@ class Sensors
 
         foreach ($sensor_list as $key => $sensor) {
             $m_sensor_main = \Model_M_Sensor_Main::query()
-                                ->where("sensor1_device_id","=",$sensor->id)
+                                ->where("sensor1_device_id", "=", $sensor->id)
                                 ->get_one();
-        
+
+            var_dump($sensor->id);
+            var_dump($m_sensor_main);
+
+        // exit;
             if (empty($m_sensor_main)) {
-                // nothing sensor master data
-                var_dump($sensor);
-                $m_sensor_information_id = $this->getMSensorInformationId($sensor);
                 $m_sensor_main = \Model_M_Sensor_Main::forge();
                 $m_sensor_main->m_sensor_main_id = $sensor->id;
-                $m_sensor_main->name_en = $sensor->location;
-                $m_sensor_main->name_jp = $sensor->location;
-                $m_sensor_main->m_sensor_information_id = $m_sensor_information_id;
-                $m_sensor_main->latitude = $sensor->lat;
-                $m_sensor_main->longitude = $sensor->lon;
                 $m_sensor_main->sensor1_device_id = $sensor->id;
-                $m_sensor_main->view_order = $sensor->id;
-                $m_sensor_main->enable = 1;
-                $m_sensor_main->updated_at = date("Y-m-d H:i:s");
-                $m_sensor_main->created_at = date("Y-m-d H:i:s");
-                $m_sensor_main->save();
             }
+
+            $sensor_status = $this->getSensorStatusCode($sensor);
+
+            // nothing sensor master data
+            $m_sensor_information_id = $this->getMSensorInformationId($sensor);
+            $m_sensor_main->name_en = $sensor->location;
+            $m_sensor_main->name_jp = $sensor->location;
+            $m_sensor_main->m_sensor_information_id = $m_sensor_information_id;
+            $m_sensor_main->latitude = $sensor->lat;
+            $m_sensor_main->longitude = $sensor->lon;
+            $m_sensor_main->view_order = $sensor->id;
+            $m_sensor_main->sensor_status = $sensor_status;
+            $m_sensor_main->dre2cpm = $sensor->DRE2CPM;
+            $m_sensor_main->updated_at = date("Y-m-d H:i:s");
+            $m_sensor_main->created_at = date("Y-m-d H:i:s");
+            $m_sensor_main->save();
+            // }
         }
     }
 
     public function getMSensorInformationId($sensor) {
 
-        /*
-        // $url = "http://api.safecast.org/devices/${device_id}.json";
-        $url = "http://realtime.safecast.org/ja/sensor/${device_id}";
-        $conn = curl_init();
-        curl_setopt($conn, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($conn, CURLOPT_URL, $url);
-        $response = curl_exec($conn);
-        curl_close($conn);
-
-        // decode json
-        $device = json_decode($response);
-        var_dump($device);
-// exit;
-        */
         $sensor_name = "";
-        if ($sensor->cpm > 0) {
-            if ($sensor->cpm / $sensor->usvh > 300) {
+        if ($sensor->DRE2CPM > 0) {
+            if ($sensor->DRE2CPM > 900) {
+                // 960
+                $sensor_name = "LND78017 ";
+            } elseif ($sensor->DRE2CPM > 300) {
                 // 334
                 $sensor_name = "LND7318";
             } else {
@@ -86,9 +88,25 @@ class Sensors
             ->where("name", $sensor_name)
             ->get_one();
 
-var_dump($m_sensor_main->name);
-
         return $m_sensor_main->m_sensor_information_id;
+    }
+
+    public function getSensorStatusCode($sensor) {
+
+        var_dump($sensor->Status);
+        switch($sensor->Status) {
+            case "Online":
+                return self::STATUS_ONLINE;
+                break;
+            case "Offline":
+                return self::STATUS_OFFLINE;
+                break;
+            case "Offline long":
+                return self::STATUS_OFFLINE_LONG;
+                break;
+        }
+
+        // return $m_sensor_main->m_sensor_information_id;
     }
 
 }

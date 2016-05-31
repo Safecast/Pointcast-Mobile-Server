@@ -23,6 +23,24 @@ class Model_M_Sensor_Main extends \Orm\Model
 				'max' => 2147483647,
 			),
 		),
+		'sensor1_device_id' => array(
+			'data_type' => 'int',
+			'label' => 'Sensor1 device id',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -2147483648,
+				),
+				'numeric_max' => array(
+					0 => 2147483647,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'min' => -2147483648,
+				'max' => 2147483647,
+			),
+		),
 		'name_en' => array(
 			'data_type' => 'varchar',
 			'label' => 'Name en',
@@ -76,17 +94,17 @@ class Model_M_Sensor_Main extends \Orm\Model
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -9999999.999,
+					0 => -9999999.9989999998,
 				),
 				'numeric_max' => array(
-					0 => 9999999.999,
+					0 => 9999999.9989999998,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
 				'step' => 0.999,
-				'min' => -9999999.999,
-				'max' => 9999999.999,
+				'min' => -9999999.9989999998,
+				'max' => 9999999.9989999998,
 			),
 		),
 		'longitude' => array(
@@ -95,202 +113,59 @@ class Model_M_Sensor_Main extends \Orm\Model
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -9999999.999,
+					0 => -9999999.9989999998,
 				),
 				'numeric_max' => array(
-					0 => 9999999.999,
+					0 => 9999999.9989999998,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
 				'step' => 0.999,
-				'min' => -9999999.999,
-				'max' => 9999999.999,
+				'min' => -9999999.9989999998,
+				'max' => 9999999.9989999998,
 			),
 		),
-		'sensor1_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor1 device id',
+		'sensor_status' => array(
+			'data_type' => 'tinyint',
+			'label' => 'Sensor status',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -128,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 127,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'min' => -128,
+				'max' => 127,
 			),
 		),
-		'sensor2_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor2 device id',
+		'dre2cpm' => array(
+			'data_type' => 'float',
+			'label' => 'Dre2cpm',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
-					0 => -2147483648,
+					0 => -9999.9899999999998,
 				),
 				'numeric_max' => array(
-					0 => 2147483647,
+					0 => 9999.9899999999998,
 				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor3_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor3 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor4_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor4 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor5_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor5 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor6_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor6 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor7_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor7 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor8_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor8 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'sensor9_device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Sensor9 device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
+				'step' => 0.98999999999999999,
+				'min' => -9999.9899999999998,
+				'max' => 9999.9899999999998,
 			),
 		),
 		'view_order' => array(
 			'data_type' => 'int',
 			'label' => 'View order',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'enable' => array(
-			'data_type' => 'int',
-			'label' => 'Enable',
 			'null' => true,
 			'validation' => array(
 				'numeric_min' => array(
@@ -342,26 +217,4 @@ class Model_M_Sensor_Main extends \Orm\Model
             'mysql_timestamp' => true,
             'property' => 'updated_at',
         ),    );
-
-    public static function getDeviceIdList($m_sensor_mains) {
-
-       // get all device_id
-       $device_id = array();
-       foreach($m_sensor_mains as $key => $m_sensor_main) {
-               /*
-               for ($i = 1; $i <= 9; $i++) {
-                       $column_name = "sensor${i}_device_id";
-                       if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
-                               $device_id[] = $m_sensor_main[$column_name];
-                       }
-               }
-               */
-               // fixed sensor 1
-               $column_name = "sensor1_device_id";
-                       if (isset($m_sensor_main[$column_name]) && $m_sensor_main[$column_name] > 0) {
-                               $device_id[] = $m_sensor_main[$column_name];
-                       }
-       }
-       return $device_id;
-    }
 }
