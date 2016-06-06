@@ -105,6 +105,7 @@ class Sensors
                 return self::STATUS_OFFLINE_LONG;
                 break;
             default:
+                error_log($sensor->Status . ": undefined");
                 return self::STATUS_OFFLINE_LONG;
                 break;
         }
