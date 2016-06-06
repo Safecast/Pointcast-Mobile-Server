@@ -104,6 +104,9 @@ class Sensors
             case "Offline long":
                 return self::STATUS_OFFLINE_LONG;
                 break;
+            default:
+                return self::STATUS_OFFLINE_LONG;
+                break;
         }
 
         // return $m_sensor_main->m_sensor_information_id;
