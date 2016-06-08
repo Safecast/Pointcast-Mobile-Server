@@ -43,7 +43,8 @@ var_dump($url);
 
         // decode json
         $current_weather = json_decode($response);
-        if (isset($current_weather->cod && $current_weather->cod == "404")) {
+        if (isset($current_weather->cod) 
+                && $current_weather->cod == "404") {
             // nothing data 
             continue;
         }
