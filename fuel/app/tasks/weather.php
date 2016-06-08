@@ -43,6 +43,10 @@ var_dump($url);
 
         // decode json
         $current_weather = json_decode($response);
+        if (isset($current_weather->cod && $current_weather->cod == "404")) {
+            // nothing data 
+            continue;
+        }
         $l_weather_history = \Model_L_Weather_History::query()
             ->where("original_id", $current_weather->id)
             ->where("sensor1_device_id", $device_id)
