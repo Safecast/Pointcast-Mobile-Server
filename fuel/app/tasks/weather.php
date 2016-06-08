@@ -36,7 +36,6 @@ class Weather
         // "http://api.openweathermap.org/data/2.5/weather?lcfirst(str)at=35&lon=139&appid=2de143494c0b295cca9337e1e96b00e0s";
         $end_point = "http://api.openweathermap.org/data/2.5/weather?";
         $url  = $end_point . "lat=" . $m_sensor_main->latitude . "&lon=" . $m_sensor_main->longitude . "&appid=" . self::APP_ID ;
-var_dump($url);
         curl_setopt($conn, CURLOPT_URL, $url);
         $response = curl_exec($conn);
         curl_close($conn);
@@ -45,8 +44,8 @@ var_dump($url);
         $current_weather = json_decode($response);
         if (isset($current_weather->cod) 
                 && $current_weather->cod == "404") {
-            // nothing data 
-            continue;
+            // echo "Invalid location.";
+            return;
         }
         $l_weather_history = \Model_L_Weather_History::query()
             ->where("original_id", $current_weather->id)
