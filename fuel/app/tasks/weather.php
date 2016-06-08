@@ -10,7 +10,6 @@ class Weather
     {
         $m_sensor_mains = \DB::select()
                 ->from('m_sensor_main')
-                ->where('enable', 1)
                 ->order_by('view_order', 'ASC')
                 ->execute()->as_array();
         foreach ($m_sensor_mains as $key => $m_sensor_main) {
