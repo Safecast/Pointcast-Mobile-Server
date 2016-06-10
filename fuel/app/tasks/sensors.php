@@ -98,7 +98,7 @@ class Sensors
             case "Online":
                 return self::STATUS_ONLINE;
                 break;
-            case "Offline":
+            case "Offline short":
                 return self::STATUS_OFFLINE;
                 break;
             case "Offline long":
