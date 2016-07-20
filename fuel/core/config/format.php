@@ -20,23 +20,23 @@
  */
 
 return array(
-	'csv' => array(
-		'import' => array(
-			'delimiter' => ',',
-			'enclosure' => '"',
-			'newline'   => "\n",
-			'escape'    => '"',
-		),
-		'export' => array(
-			'delimiter' => ',',
-			'enclosure' => '"',
-			'newline'   => "\n",
-			'escape'    => '"',
-		),
-		'regex_newline'   => '\n',
-	),
-	'xml' => array(
-		'basenode' => 'xml',
-		'use_cdata' => false,
-	),
+    'csv' => array(
+        'import' => array(
+            'delimiter' => ',',
+            'enclosure' => '"',
+            'newline'   => "\n",
+            'escape'    => '"',
+        ),
+        'export' => array(
+            'delimiter' => ',',
+            'enclosure' => '"',
+            'newline'   => "\n",
+            'escape'    => '"',
+        ),
+        'regex_newline'   => '\n',
+    ),
+    'xml' => array(
+        'basenode' => 'xml',
+        'use_cdata' => false,
+    ),
 );

@@ -15,16 +15,16 @@ namespace Fuel\Core;
 
 class HttpNotFoundException extends \HttpException
 {
-	public function response()
-	{
-		return new \Response(\View::forge('404'), 404);
-	}
+    public function response()
+    {
+        return new \Response(\View::forge('404'), 404);
+    }
 }
 
 class HttpServerErrorException extends \HttpException
 {
-	public function response()
-	{
-		return new \Response(\View::forge('500'), 500);
-	}
+    public function response()
+    {
+        return new \Response(\View::forge('500'), 500);
+    }
 }

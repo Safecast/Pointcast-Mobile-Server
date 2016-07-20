@@ -17,7 +17,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-    	"fuelphp/upload": "2.0.1",
+        "fuelphp/upload": "2.0.1",
         "monolog/monolog": "^1.17"
     },
     "suggest": {

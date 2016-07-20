@@ -3,112 +3,112 @@ class Model_L_Measurements_History_Monthly extends \Orm\Model
 {
     protected static $_table_name = 'l_measurements_history_monthly';
     protected static $_properties = array(
-		'l_measurements_history_monthly_id' => array(
-			'data_type' => 'bigint',
-			'label' => 'L measurements history monthly id',
-			'null' => false,
-			'validation' => array(
-				0 => 'required',
-				'numeric_min' => array(
-					0 => -9223372036854775808,
-				),
-				'numeric_max' => array(
-					0 => 9223372036854775807,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -9223372036854775808,
-				'max' => 9223372036854775807,
-			),
-		),
-		'captured_date' => array(
-			'data_type' => 'string',
-			'label' => 'Captured date',
-			'null' => true,
-			'validation' => array(
-			),
-			'form' => array(
-				'type' => 'text',
-			),
-		),
-		'device_id' => array(
-			'data_type' => 'int',
-			'label' => 'Device id',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -2147483648,
-				),
-				'numeric_max' => array(
-					0 => 2147483647,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'min' => -2147483648,
-				'max' => 2147483647,
-			),
-		),
-		'average_value' => array(
-			'data_type' => 'float',
-			'label' => 'Average value',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -99999.999989999997,
-				),
-				'numeric_max' => array(
-					0 => 99999.999989999997,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'step' => 0.99999000000000005,
-				'min' => -99999.999989999997,
-				'max' => 99999.999989999997,
-			),
-		),
-		'peak_value' => array(
-			'data_type' => 'float',
-			'label' => 'Peak value',
-			'null' => true,
-			'validation' => array(
-				'numeric_min' => array(
-					0 => -99999.999989999997,
-				),
-				'numeric_max' => array(
-					0 => 99999.999989999997,
-				),
-			),
-			'form' => array(
-				'type' => 'number',
-				'step' => 0.99999000000000005,
-				'min' => -99999.999989999997,
-				'max' => 99999.999989999997,
-			),
-		),
-		'updated_at' => array(
-			'data_type' => 'string',
-			'label' => 'Updated at',
-			'null' => true,
-			'validation' => array(
-			),
-			'form' => array(
-				'type' => false,
-			),
-		),
-		'created_at' => array(
-			'data_type' => 'string',
-			'label' => 'Created at',
-			'null' => true,
-			'validation' => array(
-			),
-			'form' => array(
-				'type' => false,
-			),
-		),
-	);
+        'l_measurements_history_monthly_id' => array(
+            'data_type' => 'bigint',
+            'label' => 'L measurements history monthly id',
+            'null' => false,
+            'validation' => array(
+                0 => 'required',
+                'numeric_min' => array(
+                    0 => -9223372036854775808,
+                ),
+                'numeric_max' => array(
+                    0 => 9223372036854775807,
+                ),
+            ),
+            'form' => array(
+                'type' => 'number',
+                'min' => -9223372036854775808,
+                'max' => 9223372036854775807,
+            ),
+        ),
+        'captured_date' => array(
+            'data_type' => 'string',
+            'label' => 'Captured date',
+            'null' => true,
+            'validation' => array(
+            ),
+            'form' => array(
+                'type' => 'text',
+            ),
+        ),
+        'device_id' => array(
+            'data_type' => 'int',
+            'label' => 'Device id',
+            'null' => true,
+            'validation' => array(
+                'numeric_min' => array(
+                    0 => -2147483648,
+                ),
+                'numeric_max' => array(
+                    0 => 2147483647,
+                ),
+            ),
+            'form' => array(
+                'type' => 'number',
+                'min' => -2147483648,
+                'max' => 2147483647,
+            ),
+        ),
+        'average_value' => array(
+            'data_type' => 'float',
+            'label' => 'Average value',
+            'null' => true,
+            'validation' => array(
+                'numeric_min' => array(
+                    0 => -99999.999989999997,
+                ),
+                'numeric_max' => array(
+                    0 => 99999.999989999997,
+                ),
+            ),
+            'form' => array(
+                'type' => 'number',
+                'step' => 0.99999000000000005,
+                'min' => -99999.999989999997,
+                'max' => 99999.999989999997,
+            ),
+        ),
+        'peak_value' => array(
+            'data_type' => 'float',
+            'label' => 'Peak value',
+            'null' => true,
+            'validation' => array(
+                'numeric_min' => array(
+                    0 => -99999.999989999997,
+                ),
+                'numeric_max' => array(
+                    0 => 99999.999989999997,
+                ),
+            ),
+            'form' => array(
+                'type' => 'number',
+                'step' => 0.99999000000000005,
+                'min' => -99999.999989999997,
+                'max' => 99999.999989999997,
+            ),
+        ),
+        'updated_at' => array(
+            'data_type' => 'string',
+            'label' => 'Updated at',
+            'null' => true,
+            'validation' => array(
+            ),
+            'form' => array(
+                'type' => false,
+            ),
+        ),
+        'created_at' => array(
+            'data_type' => 'string',
+            'label' => 'Created at',
+            'null' => true,
+            'validation' => array(
+            ),
+            'form' => array(
+                'type' => false,
+            ),
+        ),
+    );
     protected static $_observers = array(
         'Orm\Observer_Validation' => array(
             'events' => array('before_save'),

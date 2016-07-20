@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: pointcast_staging
 -- ------------------------------------------------------
--- Server version	5.5.37-MariaDB
+-- Server version    5.5.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

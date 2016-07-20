@@ -20,5 +20,5 @@ namespace Fuel\Core;
  */
 class Test_Response extends TestCase
 {
- 	public function test_foo() {}
+     public function test_foo() {}
 }

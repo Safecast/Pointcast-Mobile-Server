@@ -22,14 +22,14 @@
 
 return array(
 
-	/**
-	 * sources - The name of the main bootstrap file.
-	 *
-	 * Set this to false or remove if you using mod_rewrite.
-	 */
-	'sources' => array(
-		'github.com/fuel-packages',
-	),
+    /**
+     * sources - The name of the main bootstrap file.
+     *
+     * Set this to false or remove if you using mod_rewrite.
+     */
+    'sources' => array(
+        'github.com/fuel-packages',
+    ),
 
 );
 

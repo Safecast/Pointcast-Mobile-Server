@@ -21,29 +21,29 @@
  */
 class Controller_Pointcast extends Controller_Rest
 {
-	
-	/**
-	 * The basic welcome message
-	 *
-	 * @access  public
-	 * @return  Response
-	 */
-	public function action_index()
-	{
-		return Response::forge(View::forge('welcome/index'));
-	}
+    
+    /**
+     * The basic welcome message
+     *
+     * @access  public
+     * @return  Response
+     */
+    public function action_index()
+    {
+        return Response::forge(View::forge('welcome/index'));
+    }
 
-	/**
-	 * A typical "Hello, Bob!" type example.  This uses a ViewModel to
-	 * show how to use them.
-	 *
-	 * @access  public
-	 * @return  Response
-	 */
-	public function action_home()
-	{
-		// get sensors list
-		$m_sensor_mains = DB::select("m_sensor_main.*", "m_sensor_information.name", "m_sensor_information.conversion_rate")
+    /**
+     * A typical "Hello, Bob!" type example.  This uses a ViewModel to
+     * show how to use them.
+     *
+     * @access  public
+     * @return  Response
+     */
+    public function action_home()
+    {
+        // get sensors list
+        $m_sensor_mains = DB::select("m_sensor_main.*", "m_sensor_information.name", "m_sensor_information.conversion_rate")
                 ->from('m_sensor_main')
                 ->join('m_sensor_information', 'left')
                 ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
@@ -51,15 +51,15 @@ class Controller_Pointcast extends Controller_Rest
                 ->execute()->as_array();
         // convert int value
         \Model\Dbutil::recordCastInt($m_sensor_mains);
-		
-		// convert to device id list
-		$device_ids = \Model\Dbutil::getDeviceIdList($m_sensor_mains);
-		
-		// get recent data
-		$recents = \Model\Sensors::getRecentRecord($device_ids);
+        
+        // convert to device id list
+        $device_ids = \Model\Dbutil::getDeviceIdList($m_sensor_mains);
+        
+        // get recent data
+        $recents = \Model\Sensors::getRecentRecord($device_ids);
 
-		// get aggregation data
-		$aggregations = \Model\Sensors::getAggregation($device_ids);
+        // get aggregation data
+        $aggregations = \Model\Sensors::getAggregation($device_ids);
 
         // get peaks data
         // $peaks = \Model\Sensors::getPeakSummary($device_ids);
@@ -94,15 +94,15 @@ class Controller_Pointcast extends Controller_Rest
         ));
     }
 
-	/**
-	 * The 404 action for the application.
-	 *
-	 * @access  public
-	 * @return  Response
-	 */
-	public function action_404()
-	{
-		return Response::forge(ViewModel::forge('welcome/404'), 404);
-	}
+    /**
+     * The 404 action for the application.
+     *
+     * @access  public
+     * @return  Response
+     */
+    public function action_404()
+    {
+        return Response::forge(ViewModel::forge('welcome/404'), 404);
+    }
 
 }

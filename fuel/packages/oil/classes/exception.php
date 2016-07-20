@@ -17,18 +17,18 @@ namespace Oil;
 /**
  * Oil\Exception Class
  *
- * @package		Fuel
- * @subpackage	Oil
- * @category	Core
- * @author		Phil Sturgeon
+ * @package        Fuel
+ * @subpackage    Oil
+ * @category    Core
+ * @author        Phil Sturgeon
  */
 class Exception extends \Exception
 {
 
-//	public function __toString()
-//	{
-//		\Cli::write('Error: ' . $this->message);
-//	}
+//    public function __toString()
+//    {
+//        \Cli::write('Error: ' . $this->message);
+//    }
 
 }
 

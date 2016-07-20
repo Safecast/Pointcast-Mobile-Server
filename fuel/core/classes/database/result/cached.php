@@ -14,54 +14,54 @@ namespace Fuel\Core;
 class Database_Result_Cached extends \Database_Result
 {
 
-	/**
-	 * @param  array   $result
-	 * @param  string  $sql
-	 * @param  mixed   $as_object
-	 */
-	public function __construct(array $result, $sql, $as_object = null)
-	{
-		parent::__construct($result, $sql, $as_object);
+    /**
+     * @param  array   $result
+     * @param  string  $sql
+     * @param  mixed   $as_object
+     */
+    public function __construct(array $result, $sql, $as_object = null)
+    {
+        parent::__construct($result, $sql, $as_object);
 
-		// Find the number of rows in the result
-		$this->_total_rows = count($result);
-	}
+        // Find the number of rows in the result
+        $this->_total_rows = count($result);
+    }
 
-	public function __destruct()
-	{
-		// Cached results do not use resources
-	}
+    public function __destruct()
+    {
+        // Cached results do not use resources
+    }
 
-	/**
-	 * @return $this
-	 */
-	public function cached()
-	{
-		return $this;
-	}
+    /**
+     * @return $this
+     */
+    public function cached()
+    {
+        return $this;
+    }
 
-	/**
-	 * @param integer $offset
-	 *
-	 * @return bool
-	 */
-	public function seek($offset)
-	{
-		if ( ! $this->offsetExists($offset))
-		{
-			return false;
-		}
+    /**
+     * @param integer $offset
+     *
+     * @return bool
+     */
+    public function seek($offset)
+    {
+        if ( ! $this->offsetExists($offset))
+        {
+            return false;
+        }
 
-		$this->_current_row = $offset;
-		return true;
-	}
+        $this->_current_row = $offset;
+        return true;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function current()
-	{
-		return $this->valid() ? $this->_result[$this->_current_row] : null;
-	}
+    /**
+     * @return mixed
+     */
+    public function current()
+    {
+        return $this->valid() ? $this->_result[$this->_current_row] : null;
+    }
 
 }

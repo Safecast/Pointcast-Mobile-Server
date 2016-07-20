@@ -12,6 +12,6 @@
 
 
 return array(
-	'hello' => 'Hello there :name!'
+    'hello' => 'Hello there :name!'
 );
 

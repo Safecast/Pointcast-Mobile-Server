@@ -93,40 +93,40 @@ $t = preg_replace('`[\x00-\x08\x0b-\x0c\x0e-\x1f]`', '', $t);
 
 //Clean out any microsoft characters
 if ($C['clean_ms_char']) {
-	/**
-	* Note: CHANGED: This diverges from the htmLawed standard method to prevent breaking UTF-8
-	*/
+    /**
+    * Note: CHANGED: This diverges from the htmLawed standard method to prevent breaking UTF-8
+    */
 
-	//Convert Microsoft smarty quotes to boring quotes
-	$quotes = array(
-	"\xC2\xAB" => '"', // (U+00AB) in UTF-8
-	"\xC2\xBB" => '"', // (U+00BB) in UTF-8
-	"\xE2\x80\x83" => " ", // (U+2003) in UTF-8
-	"\xE2\x80\x98" => "'", // (U+2018) in UTF-8
-	"\xE2\x80\x99" => "'", // (U+2019) in UTF-8
-	"\xE2\x80\x9A" => "'", // (U+201A) in UTF-8
-	"\xE2\x80\x9B" => "'", // (U+201B) in UTF-8
-	"\xE2\x80\x9C" => '"', // (U+201C) in UTF-8
-	"\xE2\x80\x9D" => '"', // (U+201D) in UTF-8
-	"\xE2\x80\x9E" => '"', // (U+201E) in UTF-8
-	"\xE2\x80\x9F" => '"', // (U+201F) in UTF-8
-	"\xE2\x80\xB9" => "'", // (U+2039) in UTF-8
-	"\xE2\x80\xBA" => "'", // (U+203A) in UTF-8
-	);
-	$t = strtr($t, $quotes);
+    //Convert Microsoft smarty quotes to boring quotes
+    $quotes = array(
+    "\xC2\xAB" => '"', // (U+00AB) in UTF-8
+    "\xC2\xBB" => '"', // (U+00BB) in UTF-8
+    "\xE2\x80\x83" => " ", // (U+2003) in UTF-8
+    "\xE2\x80\x98" => "'", // (U+2018) in UTF-8
+    "\xE2\x80\x99" => "'", // (U+2019) in UTF-8
+    "\xE2\x80\x9A" => "'", // (U+201A) in UTF-8
+    "\xE2\x80\x9B" => "'", // (U+201B) in UTF-8
+    "\xE2\x80\x9C" => '"', // (U+201C) in UTF-8
+    "\xE2\x80\x9D" => '"', // (U+201D) in UTF-8
+    "\xE2\x80\x9E" => '"', // (U+201E) in UTF-8
+    "\xE2\x80\x9F" => '"', // (U+201F) in UTF-8
+    "\xE2\x80\xB9" => "'", // (U+2039) in UTF-8
+    "\xE2\x80\xBA" => "'", // (U+203A) in UTF-8
+    );
+    $t = strtr($t, $quotes);
 
-	//Taken from http://www.php.net/manual/en/function.strtr.php#40253
-	$badlatin1_cp1252_to_htmlent = array(
-	'\x80'=>'&#x20AC;', '\x81'=>'?', '\x82'=>'&#x201A;', '\x83'=>'&#x0192;',
-	'\x84'=>'&#x201E;', '\x85'=>'&#x2026;', '\x86'=>'&#x2020;', '\x87'=>'&#x2021;',
-	'\x88'=>'&#x02C6;', '\x89'=>'&#x2030;', '\x8A'=>'&#x0160;', '\x8B'=>'&#x2039;',
-	'\x8C'=>'&#x0152;', '\x8D'=>'?', '\x8E'=>'&#x017D;', '\x8F'=>'?',
-	'\x90'=>'?', '\x91'=>'&#x2018;', '\x92'=>'&#x2019;', '\x93'=>'&#x201C;',
-	'\x94'=>'&#x201D;', '\x95'=>'&#x2022;', '\x96'=>'&#x2013;', '\x97'=>'&#x2014;',
-	'\x98'=>'&#x02DC;', '\x99'=>'&#x2122;', '\x9A'=>'&#x0161;', '\x9B'=>'&#x203A;',
-	'\x9C'=>'&#x0153;', '\x9D'=>'?', '\x9E'=>'&#x017E;', '\x9F'=>'&#x0178;'
-	);
-	$t = strtr($t, $badlatin1_cp1252_to_htmlent);
+    //Taken from http://www.php.net/manual/en/function.strtr.php#40253
+    $badlatin1_cp1252_to_htmlent = array(
+    '\x80'=>'&#x20AC;', '\x81'=>'?', '\x82'=>'&#x201A;', '\x83'=>'&#x0192;',
+    '\x84'=>'&#x201E;', '\x85'=>'&#x2026;', '\x86'=>'&#x2020;', '\x87'=>'&#x2021;',
+    '\x88'=>'&#x02C6;', '\x89'=>'&#x2030;', '\x8A'=>'&#x0160;', '\x8B'=>'&#x2039;',
+    '\x8C'=>'&#x0152;', '\x8D'=>'?', '\x8E'=>'&#x017D;', '\x8F'=>'?',
+    '\x90'=>'?', '\x91'=>'&#x2018;', '\x92'=>'&#x2019;', '\x93'=>'&#x201C;',
+    '\x94'=>'&#x201D;', '\x95'=>'&#x2022;', '\x96'=>'&#x2013;', '\x97'=>'&#x2014;',
+    '\x98'=>'&#x02DC;', '\x99'=>'&#x2122;', '\x9A'=>'&#x0161;', '\x9B'=>'&#x203A;',
+    '\x9C'=>'&#x0153;', '\x9D'=>'?', '\x9E'=>'&#x017E;', '\x9F'=>'&#x0178;'
+    );
+    $t = strtr($t, $badlatin1_cp1252_to_htmlent);
 }
 if($C['cdata'] or $C['comment']){$t = preg_replace_callback('`<!(?:(?:--.*?--)|(?:\[CDATA\[.*?\]\]))>`sm', 'hl_cmtcd', $t);}
 $t = preg_replace_callback('`&amp;([A-Za-z][A-Za-z0-9]{1,30}|#(?:[0-9]{1,8}|[Xx][0-9A-Fa-f]{1,7}));`', 'hl_ent', str_replace('&', '&amp;', $t));

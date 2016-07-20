@@ -21,90 +21,90 @@
 
 
 return array(
-	/**
-	 * The driver to be used. Currently gd, imagemagick or imagick
-	 */
-	'driver' => 'gd',
+    /**
+     * The driver to be used. Currently gd, imagemagick or imagick
+     */
+    'driver' => 'gd',
 
-	/**
-	 * Sets the background color of the image.
-	 *
-	 * Set to null for a transparent background.
-	 */
-	'bgcolor' => null,
+    /**
+     * Sets the background color of the image.
+     *
+     * Set to null for a transparent background.
+     */
+    'bgcolor' => null,
 
-	/**
-	 * Sets the transparency of any watermark added to the image.
-	 */
-	'watermark_alpha' => 75,
+    /**
+     * Sets the transparency of any watermark added to the image.
+     */
+    'watermark_alpha' => 75,
 
-	/**
-	 * The quality of the image being saved or output, if the format supports it.
-	 */
-	'quality' => 100,
+    /**
+     * The quality of the image being saved or output, if the format supports it.
+     */
+    'quality' => 100,
 
-	/**
-	 * Lets you use a default container for images. Override by Image::output('png') or Image::save('file.png')
-	 *
-	 * Examples: png, bmp, jpeg, ...
-	 */
-	'filetype' => null,
+    /**
+     * Lets you use a default container for images. Override by Image::output('png') or Image::save('file.png')
+     *
+     * Examples: png, bmp, jpeg, ...
+     */
+    'filetype' => null,
 
-	/**
-	 * The install location of the imagemagick executables.
-	 */
-	'imagemagick_dir' => '/usr/bin/',
+    /**
+     * The install location of the imagemagick executables.
+     */
+    'imagemagick_dir' => '/usr/bin/',
 
-	/**
-	 * Temporary directory to store image files in that are being edited.
-	 */
-	'temp_dir' => APPPATH.'tmp'.DS,
+    /**
+     * Temporary directory to store image files in that are being edited.
+     */
+    'temp_dir' => APPPATH.'tmp'.DS,
 
-	/**
-	 * The string of text to append to the image.
-	 */
-	'temp_append' => 'fuelimage_',
+    /**
+     * The string of text to append to the image.
+     */
+    'temp_append' => 'fuelimage_',
 
-	/**
-	 * Sets if the queue should be cleared after a save(), save_pa(), or output().
-	 */
-	'clear_queue' => true,
+    /**
+     * Sets if the queue should be cleared after a save(), save_pa(), or output().
+     */
+    'clear_queue' => true,
 
-	/**
-	 * Determines whether to automatically reload the image (false) or keep the changes (true) when saving or outputting.
-	 */
-	'persistence' => false,
+    /**
+     * Determines whether to automatically reload the image (false) or keep the changes (true) when saving or outputting.
+     */
+    'persistence' => false,
 
-	/**
-	 * Used to debug the class, defaults to false.
-	 */
-	'debug' => false,
+    /**
+     * Used to debug the class, defaults to false.
+     */
+    'debug' => false,
 
-	/**
-	 * These presets allow you to call controlled manipulations.
-	 */
-	'presets' => array(
+    /**
+     * These presets allow you to call controlled manipulations.
+     */
+    'presets' => array(
 
-		/**
-		 * This shows an example of how to add preset manipulations
-		 * to an image.
-		 *
-		 * Note that config values here override the current configuration.
-		 *
-		 * Driver cannot be changed in here.
+        /**
+         * This shows an example of how to add preset manipulations
+         * to an image.
+         *
+         * Note that config values here override the current configuration.
+         *
+         * Driver cannot be changed in here.
 
-		'example' => array(
-			'quality' => 100,
-			'bgcolor' => null,
-			'actions' => array(
-				array('crop_resize', 200, 200),
-				array('border', 20, "#f00"),
-				array('rounded', 10),
-				array('output', 'png')
-			)
-		)
-		*/
-	)
+        'example' => array(
+            'quality' => 100,
+            'bgcolor' => null,
+            'actions' => array(
+                array('crop_resize', 200, 200),
+                array('border', 20, "#f00"),
+                array('rounded', 10),
+                array('output', 'png')
+            )
+        )
+        */
+    )
 );
 
 

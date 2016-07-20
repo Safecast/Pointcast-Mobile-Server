@@ -3,9 +3,9 @@ var DocVersion = "1.7";
 
 // set the google CSE key based on the docversion
 if (DocVersion.indexOf('-dev')) {
-	var GoogleCSE = "006268519150918941486:avkdxx7rmmc";
+    var GoogleCSE = "006268519150918941486:avkdxx7rmmc";
 } else {
-	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
+    var GoogleCSE = "006268519150918941486:vg1sweimb7m";
 }
 
 /*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license
@@ -34,67 +34,67 @@ Array.max = function( array ){
 };
 
 ;(function($){
-	$.fn.anchorify = function(){
-		var $icon = $('<a class="internal_link"></a>');
-		$icon.click(function(e){
-			$.scrollTo(this, { speed:400, offset: -20 });
-		});
-		return $(this).each(function(){
-			var id = $(this).attr('id');
-			if(id && id != '')
-			{
-				var $handle = $icon.clone(true);
-				$handle.attr('href', '#/'+id);
-				$(this).html($handle.html($(this).html()));
-			}
-		});
-	}
+    $.fn.anchorify = function(){
+        var $icon = $('<a class="internal_link"></a>');
+        $icon.click(function(e){
+            $.scrollTo(this, { speed:400, offset: -20 });
+        });
+        return $(this).each(function(){
+            var id = $(this).attr('id');
+            if(id && id != '')
+            {
+                var $handle = $icon.clone(true);
+                $handle.attr('href', '#/'+id);
+                $(this).html($handle.html($(this).html()));
+            }
+        });
+    }
 })(jQuery);
 
 ;(function($){
-	$.fn.menu_expand = function(){
-		return $(this).each(function(){
-			var $menu = $(this);
-			var $link = $menu.parent().find('> a');
-			var $toc_part = $menu.closest('.pane');
-			var $handle = $('<span class="expand_me">+</span>');
-			$link.click(function(e){
-				e.preventDefault();
-				$menu.slideToggle(300, function(){
-					$toc_part.attr('h', $toc_part.height());
-					$toc_part.triggerHandler('update_height');
-				});
-			});
-			$link.append($handle);
-		});
-	}
+    $.fn.menu_expand = function(){
+        return $(this).each(function(){
+            var $menu = $(this);
+            var $link = $menu.parent().find('> a');
+            var $toc_part = $menu.closest('.pane');
+            var $handle = $('<span class="expand_me">+</span>');
+            $link.click(function(e){
+                e.preventDefault();
+                $menu.slideToggle(300, function(){
+                    $toc_part.attr('h', $toc_part.height());
+                    $toc_part.triggerHandler('update_height');
+                });
+            });
+            $link.append($handle);
+        });
+    }
 })(jQuery);
 
 ;(function($){
-	$.fn.menu_highlight = function(){
-		var highlight_class = 0;
-		var $all = $(this);
-		var timeout = 0;
+    $.fn.menu_highlight = function(){
+        var highlight_class = 0;
+        var $all = $(this);
+        var timeout = 0;
 
-		return $(this).each(function(){
-			var $obj = $(this);
-			if($obj.find('.topic').length > 0)
-			{
-				highlight_class++;
-			}
-			$obj.addClass('menu_highlight highlight_'+highlight_class)
-			.data('highlight', highlight_class)
-			.hover(function(){
-				clearTimeout(timeout);
-				$('.menu_highlight').removeClass('highlighted');
-				$('.highlight_'+$obj.data('highlight')).addClass('highlighted');
-			},function(){
-				timeout = setTimeout(function(){
-					$('.highlight_'+$obj.data('highlight')).removeClass('highlighted');
-				}, 100);
-			});
-		});
-	}
+        return $(this).each(function(){
+            var $obj = $(this);
+            if($obj.find('.topic').length > 0)
+            {
+                highlight_class++;
+            }
+            $obj.addClass('menu_highlight highlight_'+highlight_class)
+            .data('highlight', highlight_class)
+            .hover(function(){
+                clearTimeout(timeout);
+                $('.menu_highlight').removeClass('highlighted');
+                $('.highlight_'+$obj.data('highlight')).addClass('highlighted');
+            },function(){
+                timeout = setTimeout(function(){
+                    $('.highlight_'+$obj.data('highlight')).removeClass('highlighted');
+                }, 100);
+            });
+        });
+    }
 })(jQuery);
 
 
@@ -105,93 +105,93 @@ if(typeof google != 'undefined')
 {
 google.load('search', '1', {language : 'en'});
 google.setOnLoadCallback(function() {
-	customSearchControl = new google.search.CustomSearchControl(GoogleCSE);
-	customSearchControl.setResultSetSize(4);
-	var options = new google.search.DrawOptions();
-	options.setSearchFormRoot('cse-search-form');
-	options.enableSearchResultsOnly();
-	customSearchControl.draw('cse_content', options);
+    customSearchControl = new google.search.CustomSearchControl(GoogleCSE);
+    customSearchControl.setResultSetSize(4);
+    var options = new google.search.DrawOptions();
+    options.setSearchFormRoot('cse-search-form');
+    options.enableSearchResultsOnly();
+    customSearchControl.draw('cse_content', options);
 }, true);
 }
 
 
 function execute_query() {
-	var textNode = document.getElementById('search_input');
-	if (textNode.value == '') {
-		clear_search();
-	} else {
-		$('#cse').show();
-		customSearchControl.execute(textNode.value);
-		$('body').delegate('#main', 'click', function(){
-			clear_search();
-		});
-	}
+    var textNode = document.getElementById('search_input');
+    if (textNode.value == '') {
+        clear_search();
+    } else {
+        $('#cse').show();
+        customSearchControl.execute(textNode.value);
+        $('body').delegate('#main', 'click', function(){
+            clear_search();
+        });
+    }
 }
 
 function clear_search()
 {
-	$('body').undelegate('#content', 'click');
-	$('#cse').hide();
-	if(typeof customSearchControl != 'undefined')
-	{
-		customSearchControl.clearAllResults();
-	}
+    $('body').undelegate('#content', 'click');
+    $('#cse').hide();
+    if(typeof customSearchControl != 'undefined')
+    {
+        customSearchControl.clearAllResults();
+    }
 }
 
 function set_key_controls()
 {
-	$(window).unbind('keyup').keyup(function(e){
-		if(e.which == 27)
-		{
-			e.preventDefault();
-			$('#toc_handle').triggerHandler('close');
-			$('#search_clear').click();
-		}
+    $(window).unbind('keyup').keyup(function(e){
+        if(e.which == 27)
+        {
+            e.preventDefault();
+            $('#toc_handle').triggerHandler('close');
+            $('#search_clear').click();
+        }
 
-		if(e.which == 84)
-		{
-			e.preventDefault();
-			$('#toc_handle').triggerHandler('click');
-		}
+        if(e.which == 84)
+        {
+            e.preventDefault();
+            $('#toc_handle').triggerHandler('click');
+        }
 
-		if(e.which == 83)
-		{
-			e.preventDefault();
-			$('#search_input').focus();
-		}
+        if(e.which == 83)
+        {
+            e.preventDefault();
+            $('#search_input').focus();
+        }
 
-		if(e.which == 77)
-		{
-			e.preventDefault();
-			$('#methods_handle').click();
-		}
+        if(e.which == 77)
+        {
+            e.preventDefault();
+            $('#methods_handle').click();
+        }
 
-	});
+    });
 }
 
 function method_list($methods)
 {
-	var list = [];
-	$methods.each(function(){
-		var prefix = $(this).attr('data-class');
-		if(typeof prefix == 'undefined')
-		{
-			prefix = class_prefix;
-		}
-		else if(prefix.length > 0)
-		{
-			prefix = prefix + '::';
-		}
-		list.push('<a href="#/'+$(this).attr('id')+'">'+prefix+$(this).text().split('(')[0]+"()</a>");
-	});
-	$('footer').append('<div id="methods"><a href="#" id="methods_handle">method list</a><div id="method_list">'+list.join('')+'</div></div>');
-	$('#methods_handle').click(function(e){
-		e.preventDefault();
-		$('#method_list').slideToggle(300);
-	})
-	$('#method_list a').click(function(){
-		$.scrollTo($($(this).attr('href').replace("#/","#")), { speed:500, offset: -20 });
-	});
+    var list = [];
+    $methods.each(function(){
+        var prefix = $(this).attr('data-class');
+        if(typeof prefix == 'undefined')
+        {
+            prefix = class_prefix;
+        }
+        else if(prefix.length > 0)
+        {
+            prefix = prefix + '::';
+        }
+        list.push('<a href="#/'+$(this).attr('id')+'">'+prefix+$(this).text().split('(')[0]+"()</a>");
+    });
+    $('footer').append('<div id="methods"><a href="#" id="methods_handle">method list</a><div id="method_list">'+list.join('')+'</div></div>');
+    $('#methods_handle').click(function(e){
+        e.preventDefault();
+        $('#method_list').slideToggle(300);
+    })
+    $('#method_list a').click(function(){
+        $.scrollTo($($(this).attr('href').replace("#/","#")), { speed:500, offset: -20 });
+    });
 }
 
 hljs.tabReplace = '    ';
@@ -200,419 +200,419 @@ hljs.initHighlightingOnLoad();
 var max_navtable_height = 0;
 
 ;(function($){
-	$.fn.table_of_content = function(){
-		var $all = $(this);
-		var $nav = $('header nav');
-		var height = 0;
-		$nav.css({
-			'height': 0,
-			'overflow': 'hidden'
-		});
-		var $handle = $('#toc_handle');
-		var $google = $('#google_search');
-		var opened = false;
-		var $active;
+    $.fn.table_of_content = function(){
+        var $all = $(this);
+        var $nav = $('header nav');
+        var height = 0;
+        $nav.css({
+            'height': 0,
+            'overflow': 'hidden'
+        });
+        var $handle = $('#toc_handle');
+        var $google = $('#google_search');
+        var opened = false;
+        var $active;
 
-		function update_height()
-		{
-			$active = $all.filter('.active');
-			height = heights[$active.data('i')] + 30;
-		}
+        function update_height()
+        {
+            $active = $all.filter('.active');
+            height = heights[$active.data('i')] + 30;
+        }
 
-		$handle.on('snapopen', function(){
-			update_height();
-			$('#header').css({
-				'margin-top': -65
-			});
-			$nav.css({
-				height: height
-			})
-			.removeAttr('style')
-			.css('position', 'relative');
-			$('#toc_handle').triggerHandler('close');
-			$('#search_clear').click();
-			opened = true;
-		});
+        $handle.on('snapopen', function(){
+            update_height();
+            $('#header').css({
+                'margin-top': -65
+            });
+            $nav.css({
+                height: height
+            })
+            .removeAttr('style')
+            .css('position', 'relative');
+            $('#toc_handle').triggerHandler('close');
+            $('#search_clear').click();
+            opened = true;
+        });
 
-		$handle.click(function(e){
-			e.preventDefault();
-			$(window).scrollTo(0, 400);
-			if(opened == false)
-			{
-				update_height();
-				$nav.stop().animate({
-					height: height
-				}, 300, function(){
-					$(this).removeAttr('style');
-					$active.css('position', 'relative');
-				});
-				opened = true;
-				$('#toc_handle').triggerHandler('close');
-				$('#search_clear').click();
-				$('#header').stop().animate({
-					'margin-top': -65
-				}, 300);
-			}
-			else
-			{
-				$nav.css({
-					height: height,
-					overflow: 'hidden'
-				});
-				$active.css('position', 'relative');
-				$nav.stop().animate({
-					height: 0
-				}, 300);
-				opened = false;
-				$('#header').stop().animate({
-					'margin-top': 0
-				}, 300);
-			}
-			Cookie.create('menu',opened);
-		});
+        $handle.click(function(e){
+            e.preventDefault();
+            $(window).scrollTo(0, 400);
+            if(opened == false)
+            {
+                update_height();
+                $nav.stop().animate({
+                    height: height
+                }, 300, function(){
+                    $(this).removeAttr('style');
+                    $active.css('position', 'relative');
+                });
+                opened = true;
+                $('#toc_handle').triggerHandler('close');
+                $('#search_clear').click();
+                $('#header').stop().animate({
+                    'margin-top': -65
+                }, 300);
+            }
+            else
+            {
+                $nav.css({
+                    height: height,
+                    overflow: 'hidden'
+                });
+                $active.css('position', 'relative');
+                $nav.stop().animate({
+                    height: 0
+                }, 300);
+                opened = false;
+                $('#header').stop().animate({
+                    'margin-top': 0
+                }, 300);
+            }
+            Cookie.create('menu',opened);
+        });
 
-		var count = 0;
-		var heights = [];
-		$(this).each(function(){
-			var $part = $(this);
-			$part.data('i', count++);
-			$part.bind('update_height', function(){
-				heights[$part.data('i')] = $part.height();
-				update_height();
-			});
-			$part.triggerHandler('update_height');
-		});
+        var count = 0;
+        var heights = [];
+        $(this).each(function(){
+            var $part = $(this);
+            $part.data('i', count++);
+            $part.bind('update_height', function(){
+                heights[$part.data('i')] = $part.height();
+                update_height();
+            });
+            $part.triggerHandler('update_height');
+        });
 
 
-		return $(this);
-	}
+        return $(this);
+    }
 })(jQuery);
 
 function setup() {
-	if(typeof google == 'undefined') {
-		$('#google_search').addClass('force_hide');
-	}
+    if(typeof google == 'undefined') {
+        $('#google_search').addClass('force_hide');
+    }
 
-	var highlight_class = 0;
-	$('ul.column > li').menu_highlight();
+    var highlight_class = 0;
+    $('ul.column > li').menu_highlight();
 
 
-	set_key_controls();
-	$('body').delegate('input', 'focus', function(){
-		$(window).unbind('keyup');
-	}).delegate('input', 'blur', function(){
-		set_key_controls();
-	});
+    set_key_controls();
+    $('body').delegate('input', 'focus', function(){
+        $(window).unbind('keyup');
+    }).delegate('input', 'blur', function(){
+        set_key_controls();
+    });
 
-	$('#google_search').submit(function(e){
-		e.preventDefault();
-		execute_query();
-		return false;
-	});
+    $('#google_search').submit(function(e){
+        e.preventDefault();
+        execute_query();
+        return false;
+    });
 
-	$('#search_clear').click(function(){
-		$('#search_input').val('');
-		clear_search();
-	});
+    $('#search_clear').click(function(){
+        $('#search_input').val('');
+        clear_search();
+    });
 
-	$('#search_input').keyup(function(e){
-		if(e.which == 27) {
-			$('#search_clear').click();
-		}
-	});
+    $('#search_input').keyup(function(e){
+        if(e.which == 27) {
+            $('#search_clear').click();
+        }
+    });
 
-	$('#main h2, #main h3, #main h4').anchorify();
+    $('#main h2, #main h3, #main h4').anchorify();
 
-	$('.package_link').each(function(){
-		$(this).wrap('<div class="wrap" style="display: none;" />');
-		$(this).css('height', '');
-		$(this).click(function(e){
-			e.preventDefault();
-			var rel = $(this).attr('rel');
-			$('#main_toc').parent().hide(2000);
-			$('#'+rel).parent().show(2000);
-		});
-	});
+    $('.package_link').each(function(){
+        $(this).wrap('<div class="wrap" style="display: none;" />');
+        $(this).css('height', '');
+        $(this).click(function(e){
+            e.preventDefault();
+            var rel = $(this).attr('rel');
+            $('#main_toc').parent().hide(2000);
+            $('#'+rel).parent().show(2000);
+        });
+    });
 
-	$('nav .pane').table_of_content();
+    $('nav .pane').table_of_content();
 
-	var target = $(location.hash.replace('#/','#'))[0];
-	//alert(target);
-	if (target) {
-		setTimeout(function(){
-		    $.scrollTo(target, { duration:300, offset: -20 });
-	    }, 100);
-	}
+    var target = $(location.hash.replace('#/','#'))[0];
+    //alert(target);
+    if (target) {
+        setTimeout(function(){
+            $.scrollTo(target, { duration:300, offset: -20 });
+        }, 100);
+    }
 
-	var $methods = $('h4.method');
-	if($methods.length > 0) {
-		method_list($methods);
-	}
+    var $methods = $('h4.method');
+    if($methods.length > 0) {
+        method_list($methods);
+    }
 
-	var title = $('#header div h1').html();
-	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+'</span>'));
+    var title = $('#header div h1').html();
+    $('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+'</span>'));
 
-	if(Cookie.read('menu') === 'true') {
-		$('#toc_handle').trigger('snapopen');
-	}
+    if(Cookie.read('menu') === 'true') {
+        $('#toc_handle').trigger('snapopen');
+    }
 };
 
 var panes = {};
 var pane_names = {
-	'main': 'FuelPHP',
-	'core': 'Core',
-	'auth': 'Auth',
-	'email': 'Email',
-	'orm': 'ORM',
-	'oil': 'Oil',
-	'parser': 'Parser'
+    'main': 'FuelPHP',
+    'core': 'Core',
+    'auth': 'Auth',
+    'email': 'Email',
+    'orm': 'ORM',
+    'oil': 'Oil',
+    'parser': 'Parser'
 };
 
 panes.main = {
-	"Basic": {
-		"Home":			"index.html",
-		"Table of Contents": "toc.html",
-		"Requirements":	"requirements.html",
-		"License":		"license.html",
-		"Contribute":	"contribute.html",
-		"Credits":		"credits.html"
-	},
-	"Installation": {
-		"Instructions":			"installation/instructions.html",
-		"Download":				"installation/download.html",
-		"Upgrade":				"installation/upgrade.html",
-		"Tutorials":			"installation/tutorials.html",
-		"Troubleshooting":		"installation/troubleshooting.html"
-	},
-	"General": {
-		"Classes": {
-			"Introduction":		"general/classes.html",
-			"Extending Core":	"general/extending_core.html"
-		},
-		"Coding Standards":	"general/coding_standards.html",
-		"Configuration":	"general/configuration.html",
-		"Constants":		"general/constants.html",
-		"Environments":		"general/environments.html",
-		"Model-View-Controller":	"general/mvc.html",
-		"Models":			"general/models.html",
-		"Views":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
-		"Controllers": {
-			"Base" :		"general/controllers/base.html",
-			"Template":		"general/controllers/template.html",
-			"Rest":			"general/controllers/rest.html",
-			"Hybrid":		"general/controllers/hybrid.html"
-		},
-		"Routing":			"general/routing.html",
-		"Security":			"general/security.html",
-		"Modules":			"general/modules.html",
-		"Packages":			"general/packages.html",
-		"HMVC Requests":	"general/hmvc.html",
-		"Migrations":		"general/migrations.html",
-		"Tasks":			"general/tasks.html",
-		"Unit Testing":		"general/unit_testing.html",
-		"Error handling":	"general/error.html",
-		"Profiling":		"general/profiling.html",
-	},
-	"Third party": {
-		"Introduction":		"vendor/intro.html",
-		"htmLawed":			"vendor/htmlawed.html",
-		"Markdown":			"vendor/markdown.html",
-		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
-		"PHPSecLib":		"vendor/phpseclib.html",
-		"spyc":				"vendor/spyc.html",
-	},
+    "Basic": {
+        "Home":            "index.html",
+        "Table of Contents": "toc.html",
+        "Requirements":    "requirements.html",
+        "License":        "license.html",
+        "Contribute":    "contribute.html",
+        "Credits":        "credits.html"
+    },
+    "Installation": {
+        "Instructions":            "installation/instructions.html",
+        "Download":                "installation/download.html",
+        "Upgrade":                "installation/upgrade.html",
+        "Tutorials":            "installation/tutorials.html",
+        "Troubleshooting":        "installation/troubleshooting.html"
+    },
+    "General": {
+        "Classes": {
+            "Introduction":        "general/classes.html",
+            "Extending Core":    "general/extending_core.html"
+        },
+        "Coding Standards":    "general/coding_standards.html",
+        "Configuration":    "general/configuration.html",
+        "Constants":        "general/constants.html",
+        "Environments":        "general/environments.html",
+        "Model-View-Controller":    "general/mvc.html",
+        "Models":            "general/models.html",
+        "Views":            "general/views.html",
+        "ViewModels":        "general/viewmodels.html",
+        "Controllers": {
+            "Base" :        "general/controllers/base.html",
+            "Template":        "general/controllers/template.html",
+            "Rest":            "general/controllers/rest.html",
+            "Hybrid":        "general/controllers/hybrid.html"
+        },
+        "Routing":            "general/routing.html",
+        "Security":            "general/security.html",
+        "Modules":            "general/modules.html",
+        "Packages":            "general/packages.html",
+        "HMVC Requests":    "general/hmvc.html",
+        "Migrations":        "general/migrations.html",
+        "Tasks":            "general/tasks.html",
+        "Unit Testing":        "general/unit_testing.html",
+        "Error handling":    "general/error.html",
+        "Profiling":        "general/profiling.html",
+    },
+    "Third party": {
+        "Introduction":        "vendor/intro.html",
+        "htmLawed":            "vendor/htmlawed.html",
+        "Markdown":            "vendor/markdown.html",
+        "PHPQuickProfiler":    "vendor/phpquickprofiler.html",
+        "PHPSecLib":        "vendor/phpseclib.html",
+        "spyc":                "vendor/spyc.html",
+    },
 };
 
 panes.core = {
-	"Classes": {
-		"Agent": {
-			"Configuration":	"classes/agent/config.html",
-			"Usage":			"classes/agent/usage.html",
-		},
-		"Arr":			"classes/arr.html",
-		"Asset": {
-			"Configuration":	"classes/asset/config.html",
-			"Usage":			"classes/asset/usage.html",
-			"Advanced":			"classes/asset/advanced.html"
-		},
-		"Autoloader":	"classes/autoloader.html",
-		"Cache": {
-			"Configuration":	"classes/cache/config.html",
-			"Usage":			"classes/cache/usage.html",
-			"Advanced":			"classes/cache/advanced.html"
-		},
-		"Cli":			"classes/cli.html",
-		"Config":		"classes/config.html",
-		"Cookie":		"classes/cookie.html",
-		"Crypt":		"classes/crypt.html",
-		"Database": {
-			"Introduction":   	  "classes/database/introduction.html",
-			"Usage":          	  "classes/database/usage.html",
-			"DB class":       	  "classes/database/db.html",
-			"DBUtil class":   	  "classes/database/dbutil.html",
-			"Query Building":	{
-				"Introduction":			"classes/database/qb.html",
-				"Insert builder":	"classes/database/qb_insert.html",
-				"Select builder":	"classes/database/qb_select.html",
-				"Update builder":	"classes/database/qb_update.html",
-				"Delete builder":	"classes/database/qb_delete.html",
-				"Where builder":	"classes/database/qb_where.html"
-			}
-		},
-		"Date":			"classes/date.html",
-		"Debug":		"classes/debug.html",
-		"Event":		"classes/event.html",
-		// "Error":		"todo.html",
-		// "Exception":	"todo.html",
-		"Fieldset":		"classes/fieldset.html",
-		"File": {
-			"Introduction":	"classes/file/intro.html",
-			"Usage":		"classes/file/usage.html",
-			"Advanced":		"classes/file/advanced.html",
-			"Handlers":		"classes/file/handlers.html",
-		},
-		"Finder":		"classes/finder.html",
-		"Form":			"classes/form.html",
-		"Format":		"classes/format.html",
-		"Ftp":			"classes/ftp.html",
-		"Fuel":			"classes/fuel.html",
-		"Html":			"classes/html.html",
-		"Image":	    "classes/image.html",
-		"Inflector":	"classes/inflector.html",
-		"Input":		"classes/input.html",
-		"Lang":			"classes/lang.html",
-		"Log":	    	"classes/log.html",
-		"Markdown":		"classes/markdown.html",
-		"Migrate":		"classes/migrate.html",
-		"Model_Crud": {
-			"Introduction": "classes/model_crud/introduction.html",
-			"Methods": "classes/model_crud/methods.html"
-			//"Usage": "classes/model_crud/usage.html",
-		},
-		"Module":		"classes/module.html",
-		"Mongo_Db": {
-			"Introduction":	"classes/mongo/introduction.html",
-			"Methods":		"classes/mongo/methods.html"
-		},
-		"Num":			"classes/num.html",
-		"Package":		"classes/package.html",
-		"Pagination":	"classes/pagination.html",
-		"Profiler":		"classes/profiler.html",
-		"Redis_Db":		"classes/redis.html",
-		"Request": {
-			"URI requests":		"classes/request/request.html",
-			"Curl":		"classes/request/curl.html",
-			"Soap":		"classes/request/soap.html"
-		},
-		"Response":		"classes/response.html",
-		"Router":		"classes/router.html",
-		"Security":		"classes/security.html",
-		"Session": {
-			"Configuration":	"classes/session/config.html",
-			"Usage":			"classes/session/usage.html",
-			"Advanced":			"classes/session/advanced.html"
-		},
-		"Str": 			"classes/str.html",
-		"Theme": {
-			"Introduction":	"classes/theme/introduction.html",
-			"Methods":	"classes/theme/methods.html",
-			"Advanced":	"classes/theme/advanced.html"
-		},
-		// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
-		"Upload": {
-			"Configuration":	"classes/upload/config.html",
-			"Usage":			"classes/upload/usage.html"
-		},
-		"Uri":			"classes/uri.html",
-		"Validation": {
-			"Introduction": "classes/validation/validation.html",
-			"Methods": "classes/validation/methods.html",
-			"Errors": "classes/validation/errors.html"
-		},
-		"View":			"classes/view.html"
-	}
+    "Classes": {
+        "Agent": {
+            "Configuration":    "classes/agent/config.html",
+            "Usage":            "classes/agent/usage.html",
+        },
+        "Arr":            "classes/arr.html",
+        "Asset": {
+            "Configuration":    "classes/asset/config.html",
+            "Usage":            "classes/asset/usage.html",
+            "Advanced":            "classes/asset/advanced.html"
+        },
+        "Autoloader":    "classes/autoloader.html",
+        "Cache": {
+            "Configuration":    "classes/cache/config.html",
+            "Usage":            "classes/cache/usage.html",
+            "Advanced":            "classes/cache/advanced.html"
+        },
+        "Cli":            "classes/cli.html",
+        "Config":        "classes/config.html",
+        "Cookie":        "classes/cookie.html",
+        "Crypt":        "classes/crypt.html",
+        "Database": {
+            "Introduction":         "classes/database/introduction.html",
+            "Usage":                "classes/database/usage.html",
+            "DB class":             "classes/database/db.html",
+            "DBUtil class":         "classes/database/dbutil.html",
+            "Query Building":    {
+                "Introduction":            "classes/database/qb.html",
+                "Insert builder":    "classes/database/qb_insert.html",
+                "Select builder":    "classes/database/qb_select.html",
+                "Update builder":    "classes/database/qb_update.html",
+                "Delete builder":    "classes/database/qb_delete.html",
+                "Where builder":    "classes/database/qb_where.html"
+            }
+        },
+        "Date":            "classes/date.html",
+        "Debug":        "classes/debug.html",
+        "Event":        "classes/event.html",
+        // "Error":        "todo.html",
+        // "Exception":    "todo.html",
+        "Fieldset":        "classes/fieldset.html",
+        "File": {
+            "Introduction":    "classes/file/intro.html",
+            "Usage":        "classes/file/usage.html",
+            "Advanced":        "classes/file/advanced.html",
+            "Handlers":        "classes/file/handlers.html",
+        },
+        "Finder":        "classes/finder.html",
+        "Form":            "classes/form.html",
+        "Format":        "classes/format.html",
+        "Ftp":            "classes/ftp.html",
+        "Fuel":            "classes/fuel.html",
+        "Html":            "classes/html.html",
+        "Image":        "classes/image.html",
+        "Inflector":    "classes/inflector.html",
+        "Input":        "classes/input.html",
+        "Lang":            "classes/lang.html",
+        "Log":            "classes/log.html",
+        "Markdown":        "classes/markdown.html",
+        "Migrate":        "classes/migrate.html",
+        "Model_Crud": {
+            "Introduction": "classes/model_crud/introduction.html",
+            "Methods": "classes/model_crud/methods.html"
+            //"Usage": "classes/model_crud/usage.html",
+        },
+        "Module":        "classes/module.html",
+        "Mongo_Db": {
+            "Introduction":    "classes/mongo/introduction.html",
+            "Methods":        "classes/mongo/methods.html"
+        },
+        "Num":            "classes/num.html",
+        "Package":        "classes/package.html",
+        "Pagination":    "classes/pagination.html",
+        "Profiler":        "classes/profiler.html",
+        "Redis_Db":        "classes/redis.html",
+        "Request": {
+            "URI requests":        "classes/request/request.html",
+            "Curl":        "classes/request/curl.html",
+            "Soap":        "classes/request/soap.html"
+        },
+        "Response":        "classes/response.html",
+        "Router":        "classes/router.html",
+        "Security":        "classes/security.html",
+        "Session": {
+            "Configuration":    "classes/session/config.html",
+            "Usage":            "classes/session/usage.html",
+            "Advanced":            "classes/session/advanced.html"
+        },
+        "Str":             "classes/str.html",
+        "Theme": {
+            "Introduction":    "classes/theme/introduction.html",
+            "Methods":    "classes/theme/methods.html",
+            "Advanced":    "classes/theme/advanced.html"
+        },
+        // "Unzip":        "todo.html", // dont do this, needs to be cleaned up. forget it exists.
+        "Upload": {
+            "Configuration":    "classes/upload/config.html",
+            "Usage":            "classes/upload/usage.html"
+        },
+        "Uri":            "classes/uri.html",
+        "Validation": {
+            "Introduction": "classes/validation/validation.html",
+            "Methods": "classes/validation/methods.html",
+            "Errors": "classes/validation/errors.html"
+        },
+        "View":            "classes/view.html"
+    }
 };
 
 panes.oil = {
-	"Oil": {
-		"Introduction":		"packages/oil/intro.html",
-		"Generate":			"packages/oil/generate.html",
-		"Refine":			"packages/oil/refine.html",
-		"Package":			"packages/oil/package.html",
-		"Test":				"packages/oil/test.html",
-		"Console":			"packages/oil/console.html"
-	}
+    "Oil": {
+        "Introduction":        "packages/oil/intro.html",
+        "Generate":            "packages/oil/generate.html",
+        "Refine":            "packages/oil/refine.html",
+        "Package":            "packages/oil/package.html",
+        "Test":                "packages/oil/test.html",
+        "Console":            "packages/oil/console.html"
+    }
 };
 
 panes.auth = {
-	"Auth Package": {
-		"Introduction":		"packages/auth/intro.html",
-		"Writing drivers":	"packages/auth/drivers.html",
-		"Driver types": {
-			"Login":		"packages/auth/types/login.html",
-			"Group":		"packages/auth/types/group.html",
-			"ACL":			"packages/auth/types/acl.html"
-		},
-		"Simpleauth": {
-			"Introduction":	"packages/auth/simpleauth/intro.html",
-			"Usage":		"packages/auth/simpleauth/usage.html"
-		},
-		"Ormauth": {
-			"Introduction":	"packages/auth/ormauth/intro.html",
-			"Usage":		"packages/auth/ormauth/usage.html"
-		},
-		"Opauth": {
-			"Introduction":	"packages/auth/opauth/intro.html",
-			"Usage":		"packages/auth/opauth/usage.html"
-		},
-		"Examples": {
-			"Auth controller": "packages/auth/examples/auth.html",
-			"Opauth controller": "packages/auth/examples/opauth.html"
-		}
-	}
+    "Auth Package": {
+        "Introduction":        "packages/auth/intro.html",
+        "Writing drivers":    "packages/auth/drivers.html",
+        "Driver types": {
+            "Login":        "packages/auth/types/login.html",
+            "Group":        "packages/auth/types/group.html",
+            "ACL":            "packages/auth/types/acl.html"
+        },
+        "Simpleauth": {
+            "Introduction":    "packages/auth/simpleauth/intro.html",
+            "Usage":        "packages/auth/simpleauth/usage.html"
+        },
+        "Ormauth": {
+            "Introduction":    "packages/auth/ormauth/intro.html",
+            "Usage":        "packages/auth/ormauth/usage.html"
+        },
+        "Opauth": {
+            "Introduction":    "packages/auth/opauth/intro.html",
+            "Usage":        "packages/auth/opauth/usage.html"
+        },
+        "Examples": {
+            "Auth controller": "packages/auth/examples/auth.html",
+            "Opauth controller": "packages/auth/examples/opauth.html"
+        }
+    }
 };
 
 
 panes.email = {
-	"Email Package": {
-		"Introduction":		"packages/email/introduction.html",
-		"Usage":			"packages/email/usage.html",
-		"Methods":			"packages/email/methods.html",
-		"Troubleshooting":	"packages/email/troubleshooting.html"
-	}
+    "Email Package": {
+        "Introduction":        "packages/email/introduction.html",
+        "Usage":            "packages/email/usage.html",
+        "Methods":            "packages/email/methods.html",
+        "Troubleshooting":    "packages/email/troubleshooting.html"
+    }
 };
 
 panes.orm = {
-	"Orm Package": {
-		"Introduction":		"packages/orm/intro.html",
-		"Creating Models":	"packages/orm/creating_models.html",
-		"CRUD":				"packages/orm/crud.html",
-		"Relating Models": {
-			"Introduction":	"packages/orm/relations/intro.html",
-			"Belongs To":	"packages/orm/relations/belongs_to.html",
-			"Has One":		"packages/orm/relations/has_one.html",
-			"Has Many":		"packages/orm/relations/has_many.html",
-			"Many to Many":	"packages/orm/relations/many_many.html"
-		},
-		"Models": {
-			"Soft Delete":        "packages/orm/model/soft.html",
-			"Temporal/Revisions": "packages/orm/model/temporal.html",
-			"NestedSets":         "packages/orm/model/nestedset.html"
-		},
-		"EAV containers":		"packages/orm/eav.html",
-		"Observers": {
-			"Introduction":			"packages/orm/observers/intro.html",
-			"Included observers":	"packages/orm/observers/included.html",
-			"Writing your own":		"packages/orm/observers/creating.html"
-		}
-	}
+    "Orm Package": {
+        "Introduction":        "packages/orm/intro.html",
+        "Creating Models":    "packages/orm/creating_models.html",
+        "CRUD":                "packages/orm/crud.html",
+        "Relating Models": {
+            "Introduction":    "packages/orm/relations/intro.html",
+            "Belongs To":    "packages/orm/relations/belongs_to.html",
+            "Has One":        "packages/orm/relations/has_one.html",
+            "Has Many":        "packages/orm/relations/has_many.html",
+            "Many to Many":    "packages/orm/relations/many_many.html"
+        },
+        "Models": {
+            "Soft Delete":        "packages/orm/model/soft.html",
+            "Temporal/Revisions": "packages/orm/model/temporal.html",
+            "NestedSets":         "packages/orm/model/nestedset.html"
+        },
+        "EAV containers":        "packages/orm/eav.html",
+        "Observers": {
+            "Introduction":            "packages/orm/observers/intro.html",
+            "Included observers":    "packages/orm/observers/included.html",
+            "Writing your own":        "packages/orm/observers/creating.html"
+        }
+    }
 };
 
 panes.parser = {
-	"Parser Package": {
-		"Introduction":		"packages/parser/intro.html"
-	}
+    "Parser Package": {
+        "Introduction":        "packages/parser/intro.html"
+    }
 };
 
 
@@ -620,26 +620,26 @@ var pane_columns = [];
 var pane_item_count = [];
 var pane_items_per_column = [];
 $.each(panes, function(pane, pane_contents){
-	var items_count = 0;
-	$.each(pane_contents, function(subject, subject_contents){
-		$.each(subject_contents, function(item, contents){
-			items_count++;
-		});
-		items_count++;
-		items_count++;
-	});
-	pane_item_count[pane] = items_count;
-	pane_columns[pane] = Math.ceil(items_count/2);
-	if(pane_columns[pane] > 5)
-	{
-		pane_columns[pane] = 5;
-	}
-	pane_items_per_column[pane] = Math.ceil(pane_item_count[pane]/pane_columns[pane]);
+    var items_count = 0;
+    $.each(pane_contents, function(subject, subject_contents){
+        $.each(subject_contents, function(item, contents){
+            items_count++;
+        });
+        items_count++;
+        items_count++;
+    });
+    pane_item_count[pane] = items_count;
+    pane_columns[pane] = Math.ceil(items_count/2);
+    if(pane_columns[pane] > 5)
+    {
+        pane_columns[pane] = 5;
+    }
+    pane_items_per_column[pane] = Math.ceil(pane_item_count[pane]/pane_columns[pane]);
 
-	if(pane_items_per_column[pane] < 3)
-	{
-		pane_items_per_column[pane] = 3;
-	}
+    if(pane_items_per_column[pane] < 3)
+    {
+        pane_items_per_column[pane] = 3;
+    }
 });
 
 var html = '';
@@ -647,53 +647,53 @@ var pane_picker_html = '';
 var active_path = window.location.pathname;
 
 $.each(panes, function(pane, pane_contents){
-	pane_picker_html = pane_picker_html + '<li id="pane_menu_'+pane+'">' + pane_names[pane] + '</li>';
-	html = html + '<div id="pane_'+pane+'" class="pane"><div class="table"><ul class="column">';
-	var processed_subjects = [];
-	var max_items = pane_items_per_column[pane];
-	var item_count = 0;
-	$.each(pane_contents, function(subject, subject_contents){
-		if(item_count >= max_items)
-		{
-			item_count = 0;
-			html = html + '</ul><ul class="column">';
-		}
+    pane_picker_html = pane_picker_html + '<li id="pane_menu_'+pane+'">' + pane_names[pane] + '</li>';
+    html = html + '<div id="pane_'+pane+'" class="pane"><div class="table"><ul class="column">';
+    var processed_subjects = [];
+    var max_items = pane_items_per_column[pane];
+    var item_count = 0;
+    $.each(pane_contents, function(subject, subject_contents){
+        if(item_count >= max_items)
+        {
+            item_count = 0;
+            html = html + '</ul><ul class="column">';
+        }
 
-		html = html + '<li><h2 class="topic">'+subject+'</h2><ul>';
+        html = html + '<li><h2 class="topic">'+subject+'</h2><ul>';
 
-		$.each(subject_contents, function(item, item_contents){
+        $.each(subject_contents, function(item, item_contents){
 
-			if(item_count >= max_items)
-			{
-				item_count = 0;
-				html = html + '</ul></li></ul><ul class="column"><li><ul>';
-			}
+            if(item_count >= max_items)
+            {
+                item_count = 0;
+                html = html + '</ul></li></ul><ul class="column"><li><ul>';
+            }
 
-			if(typeof item_contents == 'object')
-			{
-				html = html + '<li><a class="expand_handle" href="#">'+item+'</a>'+nav_html(item_contents)+'</li>';
-			}
-			else
-			{
-				var active = '';
-				if (active_path.indexOf(item_contents, active_path.length - item_contents.length) != -1)
-				{
-					active = ' class="active"';
-				}
-				html = html + '<li><a '+active+' href="'+path+item_contents+'">'+item+'</a></li>';
-			}
+            if(typeof item_contents == 'object')
+            {
+                html = html + '<li><a class="expand_handle" href="#">'+item+'</a>'+nav_html(item_contents)+'</li>';
+            }
+            else
+            {
+                var active = '';
+                if (active_path.indexOf(item_contents, active_path.length - item_contents.length) != -1)
+                {
+                    active = ' class="active"';
+                }
+                html = html + '<li><a '+active+' href="'+path+item_contents+'">'+item+'</a></li>';
+            }
 
-			item_count++;
+            item_count++;
 
-		});
+        });
 
-		item_count++;
-		item_count++;
+        item_count++;
+        item_count++;
 
-		html = html + '</ul></li>';
-	});
+        html = html + '</ul></li>';
+    });
 
-	html = html + '</ul></div></div>';
+    html = html + '</ul></div></div>';
 
 });
 
@@ -701,97 +701,97 @@ pane_picker_html = '<div class="table pane_picker"><ul id="pane_picker">' + pane
 
 function nav_html(contents)
 {
-	var html = '<ul>';
-	$.each(contents, function(item, item_contents){
-	if(typeof item_contents == 'object')
-	{
-		html = html + '<li><a href="#" class="expand_handle">'+item+'</a>'+nav_html(item_contents)+'</li>';
-	}
-	else
-	{
-		var active = '';
-		if (active_path.indexOf(item_contents, active_path.length - item_contents.length) != -1)
-		{
-			active = ' class="active"';
-		}
-		html = html + '<li><a '+active+' href="'+path+item_contents+'">'+item+'</a></li>';
-	}
-	});
-	return html + '</ul>';
+    var html = '<ul>';
+    $.each(contents, function(item, item_contents){
+    if(typeof item_contents == 'object')
+    {
+        html = html + '<li><a href="#" class="expand_handle">'+item+'</a>'+nav_html(item_contents)+'</li>';
+    }
+    else
+    {
+        var active = '';
+        if (active_path.indexOf(item_contents, active_path.length - item_contents.length) != -1)
+        {
+            active = ' class="active"';
+        }
+        html = html + '<li><a '+active+' href="'+path+item_contents+'">'+item+'</a></li>';
+    }
+    });
+    return html + '</ul>';
 }
 
 /*
-	Simple cookie handler
-	Thanks http://stackoverflow.com/a/1460174 for the basic cookie design.
+    Simple cookie handler
+    Thanks http://stackoverflow.com/a/1460174 for the basic cookie design.
 */
 var Cookie = {
-	create: function create(name, value, days) {
-	    if (days) {
-	        var date = new Date();
-	        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-	        var expires = "; expires=" + date.toGMTString();
-	    } else var expires = "";
-	    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-	},
-	read: function read(name) {
-	    var nameEQ = escape(name) + "=";
-	    var ca = document.cookie.split(';');
-	    for (var i = 0; i < ca.length; i++) {
-	        var c = ca[i];
-	        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-	        if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length, c.length));
-	    }
-	    return null;
-	},
-	erase: function (name) {
-	    self.create(name, "", -1);
-	}
+    create: function create(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        } else var expires = "";
+        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+    },
+    read: function read(name) {
+        var nameEQ = escape(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    },
+    erase: function (name) {
+        self.create(name, "", -1);
+    }
 }
 
 $("document").ready(function(){
-	$('nav').prepend(pane_picker_html+html);
-	$('nav ul ul ul').menu_expand();
-	var active_item = $('nav a.active');
-	if(active_item.length < 1)
-	{
-		active_item = $('nav ul.column:first-child a:first-child').first();
-		active_item.addClass('active');
-	}
+    $('nav').prepend(pane_picker_html+html);
+    $('nav ul ul ul').menu_expand();
+    var active_item = $('nav a.active');
+    if(active_item.length < 1)
+    {
+        active_item = $('nav ul.column:first-child a:first-child').first();
+        active_item.addClass('active');
+    }
 
-	$('#header nav ul.column ul ul').each(function(){
-		if($(this).find('a.active').length > 0)
-		{
-			$(this).show();
-		}
-	});
+    $('#header nav ul.column ul ul').each(function(){
+        if($(this).find('a.active').length > 0)
+        {
+            $(this).show();
+        }
+    });
 
-	$('nav .pane').hide().each(function(){
-		if($(this).find('a.active').length > 0)
-		{
-			$(this).addClass('active').show();
-			$('#pane_menu_'+$(this).attr('id').substr(5)).addClass('active');
-		}
-	});
+    $('nav .pane').hide().each(function(){
+        if($(this).find('a.active').length > 0)
+        {
+            $(this).addClass('active').show();
+            $('#pane_menu_'+$(this).attr('id').substr(5)).addClass('active');
+        }
+    });
 
-	var $pane_links = $('#pane_picker li');
+    var $pane_links = $('#pane_picker li');
 
-	$pane_links.click(function(){
-		if($(this).hasClass('active'))
-		{
-			return;
-		}
-		$pane_links.removeClass('active');
-		var pane = $(this).attr('id').substr(10);
-		$(this).addClass('active');
-		$('.pane.active').removeClass('active').slideUp(400);
-		$('#pane_'+pane).addClass('active').slideDown(400, function(){
-			$(this).triggerHandler('update_height');
-		});
-	});
+    $pane_links.click(function(){
+        if($(this).hasClass('active'))
+        {
+            return;
+        }
+        $pane_links.removeClass('active');
+        var pane = $(this).attr('id').substr(10);
+        $(this).addClass('active');
+        $('.pane.active').removeClass('active').slideUp(400);
+        $('#pane_'+pane).addClass('active').slideDown(400, function(){
+            $(this).triggerHandler('update_height');
+        });
+    });
 
-	$('nav .pane').each(function(){
-		$(this).find('.column').last().addClass('last');
-	});
-	setup();
+    $('nav .pane').each(function(){
+        $(this).find('.column').last().addClass('last');
+    });
+    setup();
 
 });

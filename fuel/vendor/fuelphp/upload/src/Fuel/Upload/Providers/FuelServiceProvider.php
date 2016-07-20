@@ -23,21 +23,21 @@ use Fuel\Dependency\ServiceProvider;
  */
 class FuelServiceProvider extends ServiceProvider
 {
-	/**
-	 * @var  array  list of service names provided by this provider
-	 */
-	public $provides = array('upload');
+    /**
+     * @var  array  list of service names provided by this provider
+     */
+    public $provides = array('upload');
 
-	/**
-	 * Service provider definitions
-	 */
-	public function provide()
-	{
-		// \Fuel\Upload\Upload
-		$this->register('upload', function ($dic, Array $config = null)
-		{
-			return $dic->resolve('Fuel\Upload\Upload', array($config));
-		});
+    /**
+     * Service provider definitions
+     */
+    public function provide()
+    {
+        // \Fuel\Upload\Upload
+        $this->register('upload', function ($dic, Array $config = null)
+        {
+            return $dic->resolve('Fuel\Upload\Upload', array($config));
+        });
 
-	}
+    }
 }

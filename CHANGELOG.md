@@ -633,9 +633,9 @@ __Fieldset__: added `add_before()` and `add_after()` methods to insert a new fie
 * `Fuel::find_file()` and related methods are now deprecated.  Use the `Finder` class instead (e.g. `Finder::search()`).
 * Migrations are now supported in Modules and Packages
 * Routing has 3 new shortcuts:
-	* `:almun` matches all utf-8 alphabetical and numeric characters
-	* `:num` matches all numeric characters.
-	* `:alpha` matches all utf-8 alphabetical characters
+    * `:almun` matches all utf-8 alphabetical and numeric characters
+    * `:num` matches all numeric characters.
+    * `:alpha` matches all utf-8 alphabetical characters
 * Put the `Autoloader` class into `Fuel\Core` to allow extending it, it must now be required in the app bootstrap file which is also the location where you must require your own extension.
 
 ### Security related

@@ -20,59 +20,59 @@ namespace Orm;
  */
 class Observer_UpdatedAt extends Observer
 {
-	/**
-	 * @var  bool  set true to use mySQL timestamp instead of UNIX timestamp
-	 */
-	public static $mysql_timestamp = false;
+    /**
+     * @var  bool  set true to use mySQL timestamp instead of UNIX timestamp
+     */
+    public static $mysql_timestamp = false;
 
-	/**
-	 * @var  string  property to set the timestamp on
-	 */
-	public static $property = 'updated_at';
+    /**
+     * @var  string  property to set the timestamp on
+     */
+    public static $property = 'updated_at';
 
-	/**
-	 * @var  bool  true to use mySQL timestamp instead of UNIX timestamp
-	 */
-	protected $_mysql_timestamp;
+    /**
+     * @var  bool  true to use mySQL timestamp instead of UNIX timestamp
+     */
+    protected $_mysql_timestamp;
 
-	/**
-	 * @var  string  property to set the timestamp on
-	 */
-	protected $_property;
+    /**
+     * @var  string  property to set the timestamp on
+     */
+    protected $_property;
 
-	/**
-	 * Set the properties for this observer instance, based on the parent model's
-	 * configuration or the defined defaults.
-	 *
-	 * @param  string  Model class this observer is called on
-	 */
-	public function __construct($class)
-	{
-		$props = $class::observers(get_class($this));
-		$this->_mysql_timestamp  = isset($props['mysql_timestamp']) ? $props['mysql_timestamp'] : static::$mysql_timestamp;
-		$this->_property         = isset($props['property']) ? $props['property'] : static::$property;
-	}
+    /**
+     * Set the properties for this observer instance, based on the parent model's
+     * configuration or the defined defaults.
+     *
+     * @param  string  Model class this observer is called on
+     */
+    public function __construct($class)
+    {
+        $props = $class::observers(get_class($this));
+        $this->_mysql_timestamp  = isset($props['mysql_timestamp']) ? $props['mysql_timestamp'] : static::$mysql_timestamp;
+        $this->_property         = isset($props['property']) ? $props['property'] : static::$property;
+    }
 
-	/**
-	 * Set the UpdatedAt property to the current time.
-	 *
-	 * @param  Model  Model object subject of this observer method
-	 */
-	public function before_save(Model $obj)
-	{
-		$this->before_update($obj);
-	}
+    /**
+     * Set the UpdatedAt property to the current time.
+     *
+     * @param  Model  Model object subject of this observer method
+     */
+    public function before_save(Model $obj)
+    {
+        $this->before_update($obj);
+    }
 
-	/**
-	 * Set the UpdatedAt property to the current time.
-	 *
-	 * @param  Model  Model object subject of this observer method
-	 */
-	public function before_update(Model $obj)
-	{
-		if ($obj->is_changed())
-		{
-			$obj->{$this->_property} = $this->_mysql_timestamp ? \Date::time()->format('mysql') : \Date::time()->get_timestamp();
-		}
-	}
+    /**
+     * Set the UpdatedAt property to the current time.
+     *
+     * @param  Model  Model object subject of this observer method
+     */
+    public function before_update(Model $obj)
+    {
+        if ($obj->is_changed())
+        {
+            $obj->{$this->_property} = $this->_mysql_timestamp ? \Date::time()->format('mysql') : \Date::time()->get_timestamp();
+        }
+    }
 }

@@ -20,5 +20,5 @@ namespace Fuel\Core;
  */
 class Test_File_Driver_File extends TestCase
 {
- 	public function test_foo() {}
+     public function test_foo() {}
 }

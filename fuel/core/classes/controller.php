@@ -15,66 +15,66 @@ namespace Fuel\Core;
 abstract class Controller
 {
 
-	/**
-	 * @var  Request  The current Request object
-	 */
-	public $request;
+    /**
+     * @var  Request  The current Request object
+     */
+    public $request;
 
-	/**
-	 * @var  Integer  The default response status
-	 */
-	public $response_status = 200;
+    /**
+     * @var  Integer  The default response status
+     */
+    public $response_status = 200;
 
-	/**
-	 * Sets the controller request object.
-	 *
-	 * @param   Request   The current request object
-	 */
-	public function __construct(\Request $request)
-	{
-		$this->request = $request;
-	}
+    /**
+     * Sets the controller request object.
+     *
+     * @param   Request   The current request object
+     */
+    public function __construct(\Request $request)
+    {
+        $this->request = $request;
+    }
 
-	/**
-	 * This method gets called before the action is called
-	 */
-	public function before() {}
+    /**
+     * This method gets called before the action is called
+     */
+    public function before() {}
 
-	/**
-	 * This method gets called after the action is called
-	 */
-	public function after($response)
-	{
-		// Make sure the $response is a Response object
-		if ( ! $response instanceof Response)
-		{
-			$response = \Response::forge($response, $this->response_status);
-		}
+    /**
+     * This method gets called after the action is called
+     */
+    public function after($response)
+    {
+        // Make sure the $response is a Response object
+        if ( ! $response instanceof Response)
+        {
+            $response = \Response::forge($response, $this->response_status);
+        }
 
-		return $response;
-	}
+        return $response;
+    }
 
-	/**
-	 * This method returns the named parameter requested, or all of them
-	 * if no parameter is given.
-	 *
-	 * @param   string  $param    The name of the parameter
-	 * @param   mixed   $default  Default value
-	 * @return  mixed
-	 */
-	public function param($param, $default = null)
-	{
-		return $this->request->param($param, $default);
-	}
+    /**
+     * This method returns the named parameter requested, or all of them
+     * if no parameter is given.
+     *
+     * @param   string  $param    The name of the parameter
+     * @param   mixed   $default  Default value
+     * @return  mixed
+     */
+    public function param($param, $default = null)
+    {
+        return $this->request->param($param, $default);
+    }
 
-	/**
-	 * This method returns all of the named parameters.
-	 *
-	 * @return  array
-	 */
-	public function params()
-	{
-		return $this->request->params();
-	}
+    /**
+     * This method returns all of the named parameters.
+     *
+     * @return  array
+     */
+    public function params()
+    {
+        return $this->request->params();
+    }
 }
 

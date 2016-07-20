@@ -16,7 +16,7 @@ That's it! You can also tell it specific groups (which we will get into in minut
 
 As you can see we've wrapped the phpunit command with our own Oil utility which will in time become more and more useful. If you wish to get right at the phpunit tests manually you can point it to our .xml configuration file:
 
-	$ phpunit -c fuel/core/phpunit.xml --group Core
+    $ phpunit -c fuel/core/phpunit.xml --group Core
 
 This may break or change in future versions so it's suggested you stick with using Oil for your testing.
 
@@ -61,15 +61,15 @@ Here is an example of a core class test with proper DocBlocks:
      */
     class Tests_Arr extends TestCase {
 
-    	/**
-    	 * Tests Arr::get()
-    	 *
-    	 * @test
-    	 */
-    	public function test_get()
-    	{
-    		// Test code here
-    	}
+        /**
+         * Tests Arr::get()
+         *
+         * @test
+         */
+        public function test_get()
+        {
+            // Test code here
+        }
     }
 
 All App tests should be in the **app** group.
@@ -99,34 +99,34 @@ All tests should extend the **Fuel\Core\TestCase** class.
      */
     class Tests_Arr extends TestCase {
 
-    	/**
-    	 * Tests Arr::flatten_assoc()
-    	 *
-    	 * @test
-    	 */
-    	public function test_flatten_assoc()
-    	{
-    		$people = array(
-    			array(
-    				"name" => "Jack",
-    				"age" => 21
-    			),
-    			array(
-    				"name" => "Jill",
-    				"age" => 23
-    			)
-    		);
+        /**
+         * Tests Arr::flatten_assoc()
+         *
+         * @test
+         */
+        public function test_flatten_assoc()
+        {
+            $people = array(
+                array(
+                    "name" => "Jack",
+                    "age" => 21
+                ),
+                array(
+                    "name" => "Jill",
+                    "age" => 23
+                )
+            );
 
-    		$expected = array(
-    			"0:name" => "Jack",
-    			"0:age" => 21,
-    			"1:name" => "Jill",
-    			"1:age" => 23
-    		);
+            $expected = array(
+                "0:name" => "Jack",
+                "0:age" => 21,
+                "1:name" => "Jill",
+                "1:age" => 23
+            );
 
-    		$output = Arr::flatten_assoc($people);
-    		$this->assertEquals($expected, $output);
-    	}
+            $output = Arr::flatten_assoc($people);
+            $this->assertEquals($expected, $output);
+        }
 
     }
 

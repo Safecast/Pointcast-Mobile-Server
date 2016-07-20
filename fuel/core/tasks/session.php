@@ -22,8 +22,8 @@ namespace Fuel\Tasks;
  * for your app. This could be expanded in app/tasks for application specific stuff.
  *
  * @package     Fuel
- * @version		1.1
- * @author		Daniel Berry
+ * @version        1.1
+ * @author        Daniel Berry
  * @license     MIT License
  *
  * Usage:

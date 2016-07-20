@@ -20,5 +20,5 @@ namespace Fuel\Core;
  */
 class Test_Database_Mysql_Connection extends TestCase
 {
- 	public function test_foo() {}
+     public function test_foo() {}
 }

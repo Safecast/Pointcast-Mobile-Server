@@ -20,8 +20,8 @@ namespace Fuel\Core;
  */
 class Test_Error extends TestCase
 {
- 	public function test_foo() {}
+     public function test_foo() {}
 }
 // TestCase {
-// 	public function test_foo() {}
+//     public function test_foo() {}
 // }

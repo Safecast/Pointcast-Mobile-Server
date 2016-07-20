@@ -22,15 +22,15 @@
 
 return array(
 
-	'default' => array(
-		'hostname'		=>		'localhost',
-		'username'		=>		'',
-		'password'		=>		'',
-		'port'			=>		21,
-		'passive'		=>		true,
-		'ssl_mode'		=>		false,
-		'debug'			=>		false
-	)
+    'default' => array(
+        'hostname'        =>        'localhost',
+        'username'        =>        '',
+        'password'        =>        '',
+        'port'            =>        21,
+        'passive'        =>        true,
+        'ssl_mode'        =>        false,
+        'debug'            =>        false
+    )
 );
 
 
