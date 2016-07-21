@@ -104,210 +104,6 @@
         ]
     },
     {
-        "name": "fuel/core",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/core.git",
-            "reference": "e8f23453e315ee6a0572837bd853e2e5d3d20ee2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/core/zipball/e8f23453e315ee6a0572837bd853e2e5d3d20ee2",
-            "reference": "e8f23453e315ee6a0572837bd853e2e5d3d20ee2",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-07-20 08:45:39",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Core",
-        "homepage": "https://github.com/fuel/core"
-    },
-    {
-        "name": "fuel/auth",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/auth.git",
-            "reference": "a645dbe2f80b6b4cecb069b57ea70150b6e53929"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/auth/zipball/a645dbe2f80b6b4cecb069b57ea70150b6e53929",
-            "reference": "a645dbe2f80b6b4cecb069b57ea70150b6e53929",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-01-23 12:30:25",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Auth Package",
-        "homepage": "https://github.com/fuel/auth"
-    },
-    {
-        "name": "fuel/email",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/email.git",
-            "reference": "79133b3951068bbcff9a9c7b77f9f27a777ebdbd"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/email/zipball/79133b3951068bbcff9a9c7b77f9f27a777ebdbd",
-            "reference": "79133b3951068bbcff9a9c7b77f9f27a777ebdbd",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-01-23 12:31:34",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Email Package",
-        "homepage": "https://github.com/fuel/email"
-    },
-    {
-        "name": "fuel/oil",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/oil.git",
-            "reference": "07884b955e75e057e561a2e86951eccfd4cc95fa"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/oil/zipball/07884b955e75e057e561a2e86951eccfd4cc95fa",
-            "reference": "07884b955e75e057e561a2e86951eccfd4cc95fa",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-04-24 20:04:03",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Oil Package",
-        "homepage": "https://github.com/fuel/oil"
-    },
-    {
-        "name": "fuel/orm",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/orm.git",
-            "reference": "ab5373cac8a71a146fcd4cd9d6e3332f9dde0c13"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/orm/zipball/ab5373cac8a71a146fcd4cd9d6e3332f9dde0c13",
-            "reference": "ab5373cac8a71a146fcd4cd9d6e3332f9dde0c13",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-06-23 13:58:37",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x ORM Package",
-        "homepage": "https://github.com/fuel/orm"
-    },
-    {
-        "name": "fuel/parser",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/parser.git",
-            "reference": "dd8f60343c71ccd141403749b0c5f48823d501d9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/parser/zipball/dd8f60343c71ccd141403749b0c5f48823d501d9",
-            "reference": "dd8f60343c71ccd141403749b0c5f48823d501d9",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-04-23 13:32:22",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Parser Package",
-        "homepage": "https://github.com/fuel/parser"
-    },
-    {
         "name": "fuelphp/upload",
         "version": "2.0.6",
         "version_normalized": "2.0.6.0",
@@ -503,89 +299,6 @@
         ]
     },
     {
-        "name": "fuel/docs",
-        "version": "dev-1.9/develop",
-        "version_normalized": "dev-1.9/develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fuel/docs.git",
-            "reference": "a5bb39d53bc9ffb16ac4f4a640cc763d3a44a7cc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fuel/docs/zipball/a5bb39d53bc9ffb16ac4f4a640cc763d3a44a7cc",
-            "reference": "a5bb39d53bc9ffb16ac4f4a640cc763d3a44a7cc",
-            "shasum": ""
-        },
-        "require": {
-            "composer/installers": "~1.0"
-        },
-        "time": "2016-07-19 07:32:52",
-        "type": "fuel-package",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "FuelPHP Development Team",
-                "email": "team@fuelphp.com"
-            }
-        ],
-        "description": "FuelPHP 1.x Documenataion",
-        "homepage": "https://github.com/fuel/docs"
-    },
-    {
-        "name": "psr/log",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/log.git",
-            "reference": "d8e60a5619fff77f9669da8997697443ef1a1d7e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/d8e60a5619fff77f9669da8997697443ef1a1d7e",
-            "reference": "d8e60a5619fff77f9669da8997697443ef1a1d7e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-01-06 21:40:42",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Log\\": "Psr/Log/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for logging libraries",
-        "homepage": "https://github.com/php-fig/log",
-        "keywords": [
-            "log",
-            "psr",
-            "psr-3"
-        ]
-    },
-    {
         "name": "monolog/monolog",
         "version": "1.18.2",
         "version_normalized": "1.18.2.0",
@@ -662,6 +375,284 @@
         "keywords": [
             "log",
             "logging",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "fuel/auth",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/auth.git",
+            "reference": "a645dbe2f80b6b4cecb069b57ea70150b6e53929"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/auth/zipball/a645dbe2f80b6b4cecb069b57ea70150b6e53929",
+            "reference": "a645dbe2f80b6b4cecb069b57ea70150b6e53929",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-01-23 12:30:25",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Auth Package",
+        "homepage": "https://github.com/fuel/auth"
+    },
+    {
+        "name": "fuel/email",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/email.git",
+            "reference": "79133b3951068bbcff9a9c7b77f9f27a777ebdbd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/email/zipball/79133b3951068bbcff9a9c7b77f9f27a777ebdbd",
+            "reference": "79133b3951068bbcff9a9c7b77f9f27a777ebdbd",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-01-23 12:31:34",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Email Package",
+        "homepage": "https://github.com/fuel/email"
+    },
+    {
+        "name": "fuel/oil",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/oil.git",
+            "reference": "b29b80f29f090b9ad12b931da6e979587de6ced1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/oil/zipball/b29b80f29f090b9ad12b931da6e979587de6ced1",
+            "reference": "b29b80f29f090b9ad12b931da6e979587de6ced1",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-01-23 12:32:54",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Oil Package",
+        "homepage": "https://github.com/fuel/oil"
+    },
+    {
+        "name": "fuel/parser",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/parser.git",
+            "reference": "bec50ec304e696d72dba7f13494828532c6e18df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/parser/zipball/bec50ec304e696d72dba7f13494828532c6e18df",
+            "reference": "bec50ec304e696d72dba7f13494828532c6e18df",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-03-12 12:08:41",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Parser Package",
+        "homepage": "https://github.com/fuel/parser"
+    },
+    {
+        "name": "fuel/docs",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/docs.git",
+            "reference": "e03906d02cbd09bddb653e28f92f92056e673a32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/docs/zipball/e03906d02cbd09bddb653e28f92f92056e673a32",
+            "reference": "e03906d02cbd09bddb653e28f92f92056e673a32",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-04-10 12:59:50",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Documenataion",
+        "homepage": "https://github.com/fuel/docs"
+    },
+    {
+        "name": "fuel/core",
+        "version": "1.8.0.3",
+        "version_normalized": "1.8.0.3",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/core.git",
+            "reference": "c8e190b22cb9fc1a9acfdde4ed7487e04051bbe7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/core/zipball/c8e190b22cb9fc1a9acfdde4ed7487e04051bbe7",
+            "reference": "c8e190b22cb9fc1a9acfdde4ed7487e04051bbe7",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-07-21 08:45:05",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x Core",
+        "homepage": "https://github.com/fuel/core"
+    },
+    {
+        "name": "fuel/orm",
+        "version": "1.8.0.1",
+        "version_normalized": "1.8.0.1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fuel/orm.git",
+            "reference": "69cd98cfed4d8e34b176d87b73a35b98703235be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fuel/orm/zipball/69cd98cfed4d8e34b176d87b73a35b98703235be",
+            "reference": "69cd98cfed4d8e34b176d87b73a35b98703235be",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2016-05-22 14:52:35",
+        "type": "fuel-package",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FuelPHP Development Team",
+                "email": "team@fuelphp.com"
+            }
+        ],
+        "description": "FuelPHP 1.x ORM Package",
+        "homepage": "https://github.com/fuel/orm"
+    },
+    {
+        "name": "psr/log",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+            "shasum": ""
+        },
+        "time": "2012-12-21 11:40:51",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Psr\\Log\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "keywords": [
+            "log",
+            "psr",
             "psr-3"
         ]
     }
