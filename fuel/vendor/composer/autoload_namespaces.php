@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    'Fuel\\Upload' => array($vendorDir . '/fuelphp/upload/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log'),
+    'Michelf' => array($vendorDir . '/michelf/php-markdown'),
 );
