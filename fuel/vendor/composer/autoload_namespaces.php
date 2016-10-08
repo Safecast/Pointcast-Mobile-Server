@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Michelf' => array($vendorDir . '/michelf/php-markdown'),
 );
