@@ -4,9 +4,14 @@ namespace Model\Firebase;
 class Message extends \Model {
 
     public static function send($subscribe, $message) {
+
+        Config::load('firebase', true);
+        $auth_key = Config::get('firebase.server_key', false);
+var_dump($auth_key);
+
         $headers = array(
             "Content-Type: application/json",
-             "Authorization: key=AIzaSyBqomSXkYu64qMTqdYvE874sUa2HgfSPao",
+             "Authorization: key=${auth_key}",
         );
         $data = array(
             'to' => $subscribe,
