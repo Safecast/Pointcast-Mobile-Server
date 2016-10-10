@@ -7,7 +7,7 @@ class Notification
 	public function send()
 	{
             $subscribe = "/topics/all"; 
-            $message = "iaaaaaa";
+            $message = "This is From Notification Task.";
             \Model\Firebase\Message::send($subscribe, $message);
 	}
 }

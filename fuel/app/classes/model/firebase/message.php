@@ -9,11 +9,11 @@ class Message extends \Model {
              "Authorization: key=AIzaSyBqomSXkYu64qMTqdYvE874sUa2HgfSPao",
         );
         $data = array(
-            'to' => '/topics/all',
+            'to' => $subscribe,
             'priority' =>  'high',
             'content_available' => true,
             'notification' => array(
-               'body' => 'notify',
+               'body' => $message,
                'badge' => '1'
             ),
         );
