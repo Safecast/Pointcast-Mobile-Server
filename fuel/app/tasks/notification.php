@@ -6,7 +6,8 @@ class Notification
 {
 	public function send()
 	{
-		var_dump("aaaaa");
-
+            $subscribe = "/topics/all"; 
+            $message = "iaaaaaa";
+            \Model\Firebase\Message::send($subscribe, $message);
 	}
 }
