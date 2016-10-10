@@ -5,8 +5,8 @@ class Message extends \Model {
 
     public static function send($subscribe, $message) {
 
-        Config::load('firebase', true);
-        $auth_key = Config::get('firebase.server_key', false);
+        \Config::load('firebase', true);
+        $auth_key = \Config::get('firebase.server_key', false);
 var_dump($auth_key);
 
         $headers = array(
