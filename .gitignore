@@ -20,7 +20,4 @@ fuel/email
 fuel/oil
 fuel/orm
 fuel/parser
-fuelphp/upload
-monolog/monolog
-phpseclib/phpseclib
-michelf/php-markdown
+fuel/vendor
