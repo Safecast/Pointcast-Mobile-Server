@@ -35,11 +35,10 @@ class Sensors
             $m_sensor_main = \Model_M_Sensor_Main::query()
                                 ->where("sensor1_device_id", "=", $sensor->id)
                                 ->get_one();
-
-            var_dump($sensor->id);
-            var_dump($m_sensor_main);
-
-        // exit;
+            
+            // get sensor alarm value
+            $alarm = $this->getAlarmValue($sensor);
+            
             if (empty($m_sensor_main)) {
                 $m_sensor_main = \Model_M_Sensor_Main::forge();
                 $m_sensor_main->m_sensor_main_id = $sensor->id;
@@ -93,7 +92,6 @@ class Sensors
 
     public function getSensorStatusCode($sensor) {
 
-        var_dump($sensor->Status);
         switch($sensor->Status) {
             case "Online":
                 return self::STATUS_ONLINE;
@@ -111,6 +109,33 @@ class Sensors
         }
 
         // return $m_sensor_main->m_sensor_information_id;
+    }
+    
+    public function getAlarmValue($sensor) {
+        
+        $url = "http://realtime.safecast.org/sensors/" . $sensor->id . "";
+        $conn = curl_init();
+        curl_setopt($conn, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($conn, CURLOPT_URL, $url);
+        $response = curl_exec($conn);
+        curl_close($conn);
+        
+        // var_dump($conn);
+        // var_dump($response);
+        
+        // レスポンスからalarm valueを取得する
+        preg_match("/Alarm:[0-9]+<br>/", $response, $matches);
+        $alarm = 0;
+        
+        foreach ($matches as $key => $match) {
+            $match = str_replace("Alarm:", "", $match);
+            $match = str_replace("<br>", "", $match);
+            if (is_numeric($match)) {
+                $alarm = $match;
+                break;
+            }
+        }
+        return $alarm;
     }
 
 }
