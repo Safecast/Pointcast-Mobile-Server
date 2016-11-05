@@ -15,11 +15,11 @@ return array(
     'create_orm_model' => array(
         'type'           => 'mysqli',
         'connection'     => array(
-                'hostname'       => 'localhost',
+                'hostname'       => '127.0.0.1',
                 'port'           => '3306',
                 'database'       => 'pointcast',
-                'username'       => 'pointcast',
-                'password'       => 'pointcast',
+                'username'       => 'root',
+                'password'       => '',
                 'persistent'     => false,
                 'compress'       => false,
                 // 'socket' => '/var/run/mysqld/mysqld.sock',
