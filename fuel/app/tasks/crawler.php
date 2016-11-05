@@ -26,7 +26,7 @@ class Crawler
             $mesurements_data = $this->getMesurementsData($device_id, $captured_before, $captured_after, $page);
             // register record
             foreach ($mesurements_data as $key => $record) {
-                \Model_L_Measurements_History::registerRecord($record);
+                \Model\Sensors::registerRecord($record);
             }
             $page++;
         } while(!empty($mesurements_data));
