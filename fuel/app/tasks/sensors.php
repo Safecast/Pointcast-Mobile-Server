@@ -36,9 +36,6 @@ class Sensors
                                 ->where("sensor1_device_id", "=", $sensor->id)
                                 ->get_one();
             
-            // get sensor alarm value
-            $alarm = $this->getAlarmValue($sensor);
-            
             if (empty($m_sensor_main)) {
                 $m_sensor_main = \Model_M_Sensor_Main::forge();
                 $m_sensor_main->m_sensor_main_id = $sensor->id;
@@ -46,7 +43,8 @@ class Sensors
             }
 
             $sensor_status = $this->getSensorStatusCode($sensor);
-
+            $alarm = $this->getAlarmValue($sensor);
+            
             // nothing sensor master data
             $m_sensor_information_id = $this->getMSensorInformationId($sensor);
             $m_sensor_main->name_en = $sensor->location;
@@ -57,6 +55,7 @@ class Sensors
             $m_sensor_main->view_order = $sensor->id;
             $m_sensor_main->sensor_status = $sensor_status;
             $m_sensor_main->dre2cpm = $sensor->DRE2CPM;
+            $m_sensor_main->alarm = $alarm;
             $m_sensor_main->updated_at = date("Y-m-d H:i:s");
             $m_sensor_main->created_at = date("Y-m-d H:i:s");
             $m_sensor_main->save();

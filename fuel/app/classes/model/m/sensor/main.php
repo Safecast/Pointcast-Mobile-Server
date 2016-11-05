@@ -79,17 +79,9 @@ class Model_M_Sensor_Main extends \Orm\Model
 			'null' => false,
 			'validation' => array(
 				0 => 'required',
-				'numeric_min' => array(
-					0 => 0,
-				),
-				'numeric_max' => array(
-					0 => 4294967295,
-				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => 0,
-				'max' => 4294967295,
 			),
 		),
 		'latitude' => array(
@@ -135,17 +127,9 @@ class Model_M_Sensor_Main extends \Orm\Model
 			'label' => 'Sensor status',
 			'null' => true,
 			'validation' => array(
-				'numeric_min' => array(
-					0 => -128,
-				),
-				'numeric_max' => array(
-					0 => 127,
-				),
 			),
 			'form' => array(
 				'type' => 'number',
-				'min' => -128,
-				'max' => 127,
 			),
 		),
 		'dre2cpm' => array(
@@ -165,6 +149,24 @@ class Model_M_Sensor_Main extends \Orm\Model
 				'step' => 0.98999999999999999,
 				'min' => -9999.9899999999998,
 				'max' => 9999.9899999999998,
+			),
+		),
+		'alarm' => array(
+			'data_type' => 'int',
+			'label' => 'Alarm',
+			'null' => true,
+			'validation' => array(
+				'numeric_min' => array(
+					0 => -2147483648,
+				),
+				'numeric_max' => array(
+					0 => 2147483647,
+				),
+			),
+			'form' => array(
+				'type' => 'number',
+				'min' => -2147483648,
+				'max' => 2147483647,
 			),
 		),
 		'view_order' => array(
