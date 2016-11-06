@@ -1,5 +1,9 @@
 # Multiple Environment config, set this to development, staging or production
-# SetEnv FUEL_ENV production
+# SetEnv FUEL_ENV local
+SetEnvIf Host "pointcast-mobile-app.localhost" FUEL_ENV=local
+SetEnvIf Host "safecast-pointcast-develop.chikyu-go.org" FUEL_ENV=development
+SetEnvIf Host "safecast-pointcast-staging.chikyu-go.org" FUEL_ENV=staging
+SetEnvIf Host "pointcast-mobile-app.safecast.org" FUEL_ENV=production
 
 <IfModule mod_rewrite.c>
 
