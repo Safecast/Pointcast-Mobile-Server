@@ -26,7 +26,7 @@ class Updater
             $mesurements_data = $this->getMesurementsData($device_id, $captured_before, $captured_after, $page);
             // register record
             foreach ($mesurements_data as $key => $record) {
-                if ( \Model_L_Measurements_History::registerRecord($record) == false) {
+                if ( \Model\Sensors::registerRecord($record) == false) {
                     // 一件でも重複するなら更新停止
                     return;
                 }

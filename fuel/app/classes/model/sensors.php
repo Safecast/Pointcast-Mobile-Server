@@ -134,4 +134,31 @@ EOF;
                 }
             }
         }
+        
+        private static function convertRecord($data) {
+            // object to array
+            $data_array = get_object_vars($data);
+            // format captured_at
+            $time = strtotime($data_array['captured_at']);
+            $data_array['captured_at'] = date("Y-m-d H:i:s", $time);
+            $data_array['updated_at'] = date("Y-m-d H:i:s", time());
+            $data_array['created_at'] = date("Y-m-d H:i:s", time());
+           return $data_array;
+        }
+
+
+        public static function registerRecord($data) {
+            $l_measurements_history = \Model_L_Measurements_History::query()->where('id', $data->id)
+                        ->where('device_id', $data->device_id)
+                        ->get_one();
+            if (empty($l_measurements_history)) {
+                $data = self::convertRecord($data);
+                $l_measurements_history = \Model_L_Measurements_History::forge();
+                $l_measurements_history->set($data);
+                $l_measurements_history->save();
+                return true;
+            } else {
+                return false;
+            }
+        } 
 }
