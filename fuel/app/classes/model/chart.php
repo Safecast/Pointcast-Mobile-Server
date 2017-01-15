@@ -43,7 +43,7 @@ class Chart extends \Model {
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
-WHERE device_id = $device_id AND captured_at > '$start_date' AND captured_at > '$end_date'
+WHERE device_id = $device_id AND captured_at > '$start_date' AND captured_at <= '$end_date'
 ORDER BY captured_date DESC
 LIMIT $limit;
 EOF;
