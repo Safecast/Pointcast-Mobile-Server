@@ -69,7 +69,7 @@ EOF;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
 FROM l_weather_history
-WHERE sensor1_device_id = $device_id AND dt > $dt
+WHERE sensor1_device_id = $device_id AND dt > '$dt'
 ORDER BY dt DESC
 LIMIT $limit;
 EOF;
