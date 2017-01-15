@@ -64,7 +64,7 @@ EOF;
     }
 
     public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
-        $dt = strtotime($end_time);
+        $dt = date("Y-m-d H:i:s", strtotime($end_time));
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
