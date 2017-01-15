@@ -81,8 +81,15 @@ class Controller_Pointcast extends Controller_Rest
         // グラフ表示用の分析結果を表示する
         $chart = array();
         
+        $start_time = Input::post('start_time', false);
+        $end_time = Input::post('end_time', false);
+        if (empty($start_time)) $start_time = strtotime("-5 day");
+        if (empty($end_time)) $end_time = time();
+
         // realtime
-        $chart_realtime = \Model\Chart::getRealtimeChart($m_sensor_main_id);
+        $chart_realtime = \Model\Chart::getRealtimeChart($m_sensor_main_id, $start_time, $end_time);
+
+
 
         $this->response(
             array('chart' => 

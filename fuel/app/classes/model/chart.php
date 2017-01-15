@@ -6,7 +6,7 @@ class Chart extends \Model {
     const REALTIME_CHART_LIMIT = 576; // 2days
 
 
-    public static function getRealtimeChart($m_sensor_main_id) {
+    public static function getRealtimeChart($m_sensor_main_id, $start_time, $end_time) {
 
         $result = array();
 
@@ -27,8 +27,8 @@ class Chart extends \Model {
             if ($m_sensor_main[$column_name] > 0) {
                 // check mesurement and append
                 $device_id = $m_sensor_main[$column_name];
-                $result['sensors'][$device_id] = self::getRealtimeChartByDeviceId($device_id);
-                $result['weather'][$device_id] = self::getRealtimeWeatherByDeviceId($device_id);
+                $result['sensors'][$device_id] = self::getRealtimeChartByDeviceId($device_id, $start_time, $end_time);
+                $result['weather'][$device_id] = self::getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time);
             }
         // }
 
@@ -36,13 +36,14 @@ class Chart extends \Model {
 
     }
 
-    public static function getRealtimeChartByDeviceId($device_id) {
-        $captured_at = date("Y-m-d H:i:s", strtotime("-5 day"));
+    public static function getRealtimeChartByDeviceId($device_id, $start_time, $end_time) {
+        $start_date = date("Y-m-d H:i:s", $start_time);
+        $end_date = date("Y-m-d 23:59:59", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
-WHERE device_id = $device_id AND captured_at > '$captured_at'
+WHERE device_id = $device_id AND captured_at > '$start_date' AND captured_at <= '$end_date'
 ORDER BY captured_date DESC
 LIMIT $limit;
 EOF;
@@ -63,13 +64,14 @@ EOF;
 
     }
 
-    public static function getRealtimeWeatherByDeviceId($device_id) {
-        $dt = strtotime("-5 day");
+    public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
+        $start_date = date("Y-m-d H:i:s", $start_time);
+        $end_date = date("Y-m-d 23:59:59", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
 FROM l_weather_history
-WHERE sensor1_device_id = $device_id AND dt > $dt
+WHERE sensor1_device_id = $device_id AND dt > '$start_date' AND dt <= '$end_date'
 ORDER BY dt DESC
 LIMIT $limit;
 EOF;
