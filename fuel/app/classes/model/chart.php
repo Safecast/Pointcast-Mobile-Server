@@ -38,7 +38,7 @@ class Chart extends \Model {
 
     public static function getRealtimeChartByDeviceId($device_id, $start_time, $end_time) {
         $start_date = date("Y-m-d H:i:s", $start_time);
-        $end_date = date("Y-m-d H:i:s", $end_time);
+        $end_date = date("Y-m-d 23:59:59", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
@@ -66,7 +66,7 @@ EOF;
 
     public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
         $start_date = date("Y-m-d H:i:s", $start_time);
-        $end_date = date("Y-m-d H:i:s", $end_time);
+        $end_date = date("Y-m-d 23:59:59", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
