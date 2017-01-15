@@ -37,12 +37,13 @@ class Chart extends \Model {
     }
 
     public static function getRealtimeChartByDeviceId($device_id, $start_time, $end_time) {
-        $captured_at = date("Y-m-d H:i:s", $end_time);
+        $start_date = date("Y-m-d H:i:s", $start_time);
+        $end_date = date("Y-m-d H:i:s", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
 FROM l_measurements_history
-WHERE device_id = $device_id AND captured_at > '$captured_at'
+WHERE device_id = $device_id AND captured_at > '$start_date' AND captured_at > '$end_date'
 ORDER BY captured_date DESC
 LIMIT $limit;
 EOF;
@@ -64,12 +65,13 @@ EOF;
     }
 
     public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
-        $dt = date("Y-m-d H:i:s", $end_time);
+        $start_date = date("Y-m-d H:i:s", $start_time);
+        $end_date = date("Y-m-d H:i:s", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
 FROM l_weather_history
-WHERE sensor1_device_id = $device_id AND dt > '$dt'
+WHERE sensor1_device_id = $device_id AND dt > '$start_date' AND dt <= '$end_date'
 ORDER BY dt DESC
 LIMIT $limit;
 EOF;
