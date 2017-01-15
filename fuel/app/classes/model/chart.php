@@ -6,7 +6,7 @@ class Chart extends \Model {
     const REALTIME_CHART_LIMIT = 576; // 2days
 
 
-    public static function getRealtimeChart($m_sensor_main_id) {
+    public static function getRealtimeChart($m_sensor_main_id, $start_time, $end_time) {
 
         $result = array();
 
@@ -27,8 +27,8 @@ class Chart extends \Model {
             if ($m_sensor_main[$column_name] > 0) {
                 // check mesurement and append
                 $device_id = $m_sensor_main[$column_name];
-                $result['sensors'][$device_id] = self::getRealtimeChartByDeviceId($device_id);
-                $result['weather'][$device_id] = self::getRealtimeWeatherByDeviceId($device_id);
+                $result['sensors'][$device_id] = self::getRealtimeChartByDeviceId($device_id, $start_time, $end_time);
+                $result['weather'][$device_id] = self::getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time);
             }
         // }
 
@@ -36,8 +36,8 @@ class Chart extends \Model {
 
     }
 
-    public static function getRealtimeChartByDeviceId($device_id) {
-        $captured_at = date("Y-m-d H:i:s", strtotime("-5 day"));
+    public static function getRealtimeChartByDeviceId($device_id, $start_time, $end_time) {
+        $captured_at = date("Y-m-d H:i:s", strtotime($end_time));
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT DATE_FORMAT(captured_at, '%Y/%m/%d %H:%i') as captured_date, value
@@ -63,8 +63,8 @@ EOF;
 
     }
 
-    public static function getRealtimeWeatherByDeviceId($device_id) {
-        $dt = strtotime("-5 day");
+    public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
+        $dt = strtotime($end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
