@@ -47,8 +47,6 @@ WHERE device_id = $device_id AND captured_at > '$start_date' AND captured_at <= 
 ORDER BY captured_date DESC
 LIMIT $limit;
 EOF;
-
-\Log::error($sql);
         $l_measurements_histories = \DB::query($sql)
                                         ->execute()
                                         ->as_array();
@@ -80,7 +78,6 @@ EOF;
         $l_weather_histories = \DB::query($sql)
                                         ->execute()
                                         ->as_array();
-\Log::error($sql);
         // value change and cast
         foreach ($l_weather_histories as $key => $l_weather_history) {
             $l_weather_histories[$key]['weather_main'] = $l_weather_history['weather_main'];
