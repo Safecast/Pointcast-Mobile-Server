@@ -65,19 +65,18 @@ EOF;
     }
 
     public static function getRealtimeWeatherByDeviceId($device_id, $start_time, $end_time) {
-        $start_date = date("Y-m-d H:i:s", $start_time);
-        $end_date = date("Y-m-d 23:59:59", $end_time);
         $limit = self::REALTIME_CHART_LIMIT;
         $sql = <<< EOF
 SELECT dt, weather_main, icon
 FROM l_weather_history
-WHERE sensor1_device_id = $device_id AND dt > '$start_date' AND dt <= '$end_date'
+WHERE sensor1_device_id = $device_id AND dt > $start_time AND dt <= $end_time
 ORDER BY dt DESC
 LIMIT $limit;
 EOF;
         $l_weather_histories = \DB::query($sql)
                                         ->execute()
                                         ->as_array();
+
         // value change and cast
         foreach ($l_weather_histories as $key => $l_weather_history) {
             $l_weather_histories[$key]['weather_main'] = $l_weather_history['weather_main'];
