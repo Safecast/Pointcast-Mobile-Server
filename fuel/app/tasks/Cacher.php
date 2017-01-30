@@ -2,13 +2,13 @@
 
 namespace Fuel\Tasks;
 
-class Cacher
+class cacher
 {
 	const FQDN = "http://pointcast-mobile-app.safecast.org";
     
     public function run()
     {
-    	// self::requestHome();
+    	self::requestHome();
     	self::execAnalytics();
     }
 
@@ -17,20 +17,21 @@ class Cacher
 		$POST_DATA = array(
 		    'foo' => 'bar'
 		);
-		$curl=curl_init(Cacher::FQDN . "/pointcast/home.json");
-		curl_setopt($curl,CURLOPT_POST, TRUE);
+		$curl = curl_init(Cacher::FQDN . "/pointcast/home.json");
+		curl_setopt($curl, CURLOPT_POST, TRUE);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($POST_DATA));
-		curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, FALSE);  // オレオレ証明書対策
-		curl_setopt($curl,CURLOPT_SSL_VERIFYHOST, FALSE);  // 
-		curl_setopt($curl,CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($curl,CURLOPT_COOKIEJAR,      'cookie');
-		curl_setopt($curl,CURLOPT_COOKIEFILE,     'tmp');
-		curl_setopt($curl,CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);  // オレオレ証明書対策
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);  // 
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($curl, CURLOPT_COOKIEJAR,      'cookie');
+		curl_setopt($curl, CURLOPT_COOKIEFILE,     'tmp');
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
 
 		$html = curl_exec($curl);
+		$info = curl_getinfo($curl);
 		curl_close($curl);
 
-		print_r($html);
+		echo date("Y-m-d H:i:s") . " " . $info['http_code'] . " " . $info['url'] . "\n";
 	}
 
 	public static function execAnalytics()
@@ -57,18 +58,19 @@ class Cacher
 		    'end_time' => $end_time,
 		);
 		$curl=curl_init(Cacher::FQDN . "/pointcast/analytics/${m_sensor_main_id}.json");
-		curl_setopt($curl,CURLOPT_POST, TRUE);
+		curl_setopt($curl, CURLOPT_POST, TRUE);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($POST_DATA));
-		curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, FALSE);  // オレオレ証明書対策
-		curl_setopt($curl,CURLOPT_SSL_VERIFYHOST, FALSE);  // 
-		curl_setopt($curl,CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($curl,CURLOPT_COOKIEJAR,      'cookie');
-		curl_setopt($curl,CURLOPT_COOKIEFILE,     'tmp');
-		curl_setopt($curl,CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);  // オレオレ証明書対策
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);  // 
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($curl, CURLOPT_COOKIEJAR,      'cookie');
+		curl_setopt($curl, CURLOPT_COOKIEFILE,     'tmp');
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
 
 		$html = curl_exec($curl);
+		$info = curl_getinfo($curl);
 		curl_close($curl);
 
-		print_r($html);
+		echo date("Y-m-d H:i:s") . " " . $info['http_code'] . " " . $info['url'] . "\n";
 	}
 }
