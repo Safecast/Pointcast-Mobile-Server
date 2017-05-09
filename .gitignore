@@ -14,6 +14,7 @@ composer.phar
 components/*/
 composer.lock
 fuel/app/logs
+fuel/app/cache
 fuel/core
 fuel/auth
 fuel/email

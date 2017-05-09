@@ -47,6 +47,7 @@ class Controller_Pointcast extends Controller_Rest
                 ->from('m_sensor_main')
                 ->join('m_sensor_information', 'left')
                 ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
+                ->where('m_sensor_main.sensor_status', 1)
                 ->order_by('m_sensor_main.view_order', 'ASC')
                 ->execute()->as_array();
         // convert int value
@@ -58,17 +59,50 @@ class Controller_Pointcast extends Controller_Rest
         // get recent data
         $recents = \Model\Sensors::getRecentRecord($device_ids);
 
-        // get aggregation data
-        $aggregations = \Model\Sensors::getAggregation($device_ids);
+        // realtime
+        $param = date("YmdH").(int)(date("i") / 5);
+        $cache_key = "home_" . $param;
 
-        // get peaks data
-        // $peaks = \Model\Sensors::getPeakSummary($device_ids);
-        
-        // attach summary value
-        // \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
+        try
+        {
+            $m_sensor_mains = Cache::get($cache_key, false);
+        }
+        catch (\CacheNotFoundException $e)
+        {
+            if (true)
+            {
 
-        // attach recents aggregations data
-        \Model\Sensors::attachAggregations($m_sensor_mains, $recents, $aggregations);
+                // get sensors list
+                $m_sensor_mains = DB::select("m_sensor_main.*", "m_sensor_information.name", "m_sensor_information.conversion_rate")
+                    ->from('m_sensor_main')
+                    ->join('m_sensor_information', 'left')
+                    ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
+                    ->order_by('m_sensor_main.view_order', 'ASC')
+                    ->execute()->as_array();
+                // convert int value
+                \Model\Dbutil::recordCastInt($m_sensor_mains);
+
+                // convert to device id list
+                $device_ids = \Model\Dbutil::getDeviceIdList($m_sensor_mains);
+
+                // get recent data
+                $recents = \Model\Sensors::getRecentRecord($device_ids);
+
+                // get aggregation data
+                $aggregations = \Model\Sensors::getAggregation($device_ids);
+
+                // get peaks data
+                // $peaks = \Model\Sensors::getPeakSummary($device_ids);
+
+                // attach summary value
+                // \Model\Sensors::attachMeasurements($m_sensor_mains, $averages, $peaks);
+
+                // attach recents aggregations data
+                \Model\Sensors::attachAggregations($m_sensor_mains, $recents, $aggregations);
+
+                Cache::set($cache_key, $m_sensor_mains, 3600);
+            }
+        }
 
         $this->response(array(
             'topic' => array(),
@@ -87,9 +121,21 @@ class Controller_Pointcast extends Controller_Rest
         if (empty($end_time)) $end_time = time();
 
         // realtime
-        $chart_realtime = \Model\Chart::getRealtimeChart($m_sensor_main_id, $start_time, $end_time);
+        $param = $m_sensor_main_id . "_" . $start_time . "_" . $end_time . "_" . (int)(date("i") / 5);
+        $cache_key = "analytics_" . $param;
 
-
+        try
+        {
+            $chart_realtime = Cache::get($cache_key, false);
+        }
+        catch (\CacheNotFoundException $e)
+        {
+            $chart_realtime = \Model\Chart::getRealtimeChart($m_sensor_main_id, $start_time, $end_time);
+            if (!empty($chart_realtime))
+            {
+                Cache::set($cache_key, $chart_realtime, 3600);
+            }
+        }
 
         $this->response(
             array('chart' => 
