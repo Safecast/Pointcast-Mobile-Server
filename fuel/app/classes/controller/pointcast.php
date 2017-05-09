@@ -77,6 +77,7 @@ class Controller_Pointcast extends Controller_Rest
                     ->from('m_sensor_main')
                     ->join('m_sensor_information', 'left')
                     ->on('m_sensor_main.m_sensor_information_id', '=', 'm_sensor_information.m_sensor_information_id')
+                    ->where('m_sensor_main.sensor_status', 1)
                     ->order_by('m_sensor_main.view_order', 'ASC')
                     ->execute()->as_array();
                 // convert int value
