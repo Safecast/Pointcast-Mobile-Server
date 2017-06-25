@@ -3,7 +3,7 @@ namespace Model;
 
 class Chart extends \Model {
 
-    const REALTIME_CHART_LIMIT = 2000;
+    const REALTIME_CHART_LIMIT = 3000;
 
 
     public static function getRealtimeChart($m_sensor_main_id, $start_time, $end_time) {
